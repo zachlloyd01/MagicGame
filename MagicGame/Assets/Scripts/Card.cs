@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : ScriptableObject
+[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+public class Card : ScriptableObject //Scriptable Object allows Unity to create instances of this object from the editor
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Everything here should be fairly self explanatory I hope
+    public string Name;
+    public string type;
+
+    public string description;
+
+    public Sprite artwork; //Will be converted to image on display
+
+    public int attack;
+    public int damage; //Is this the right name?
+
 }
