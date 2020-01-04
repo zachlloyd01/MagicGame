@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 using UnityEditor;
@@ -17,25 +16,37 @@ public class Create_Cards : MonoBehaviour
 
     private void createobjects()
     {
-        string json = File.ReadAllText("cardlist.json"); //The file to read the data off of
-        var jsonCards = JsonConvert.DeserializeObject<List<cardList>>(json); //deserialize the data into a readable list format
-        foreach (cardList card in jsonCards)
+        string path = "C:\\Users\\Zach\\Downloads\\ELD.json";
+        string JSONString = File.ReadAllText(path);
+        Debug.Log(JSONString);
+        cardList[] list = JsonUtility.FromJson<cardList[]>(JSONString);
+        foreach (cardList List in list)
         {
-            Card i = Card.CreateInstance(card.name, card.type, card.description, int.Parse(card.attack), int.Parse(card.damage)); //Use the custom constructor to create a Card
-            GameObject instance = GameObject.Instantiate(cardPrefab) as GameObject; //Get an instance of the prefab template
-            instance.name = i.name; //set the name of the instance to the card name
-            instance.GetComponent<CardDisplay>().card = i; //set the card data of the new prefab to the new card
-            PrefabUtility.SaveAsPrefabAsset(instance, "/Cards/"); //save the new card prefab to the cards directory
+            Debug.Log(List.name);
         }
+/*        Card bruh = new Card();
+        bruh.Artist = "bruh";
+        AssetDatabase.CreateAsset(bruh, "Assets/NewScripableObject.asset");
+        AssetDatabase.SaveAssets();*/
     }
 }
 
 public class cardList //The class to attach json data to
 {
+    public string artist;
+    public string[] colors;
+    public string convertedManaCost;
+    public string manaCost;
     public string name;
+    public string number;
+    public string originalText;
+    public string originalType;
+    public string power;
+    public string rarity;
+    public string[] rulings;
+    public string[] subtypes;
+    public string[] supertypes;
     public string type;
-    public string attack;
-    public string damage;
     public string flavorText;
     public string description;
 }

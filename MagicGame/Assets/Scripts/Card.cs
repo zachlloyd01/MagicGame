@@ -12,25 +12,25 @@ public class Card : ScriptableObject //Scriptable Object allows Unity to create 
     private string colorIdentity;
     private string colors;
     private int convertedManaCost;
-    public string flavorText;
-    // public bool isFoil; add later?
+    private string flavorText;
+    // private bool isFoil; add later?
     private string manaCost;
     private string cardName;
     private int number; // i.e. set number
-    private int power;
     private string rarity;
     private string rulings;
     private string set;
     private string[] subtypes; // ex. Elemental
     private string[] supertypes; // ex. Legendary
     private string text; // oracle text
+    private int power;
     private string toughness;
-    private string type; // ex. Legendary Artifact Creature - Elemental
+    private string type; // ex. Legendary Artifact Creatu
+
     private string[] types; // ex. Artifact Creature
 
-    public int attack;
-    public int damage; //Is this the right name?
 
+    public Card() { }
     // recieve & send attributes through get & set
     public string Artist { get => artist; set => artist = value; }
     public Sprite Artwork { get => artwork; set => artwork = value; }
@@ -38,7 +38,7 @@ public class Card : ScriptableObject //Scriptable Object allows Unity to create 
     public string Colors { get => colors; set => colors = value; }
     public int ConvertedManaCost { get => convertedManaCost; set => convertedManaCost = value; }
     public string ManaCost { get => manaCost; set => manaCost = value; }
-    public string Name { get => name; set => name = value; }
+    public string Name { get => cardName; set => cardName = value; }
     public int Number { get => number; set => number = value; }
     public int Power { get => power; set => power = value; }
     public string Rarity { get => rarity; set => rarity = value; }
@@ -51,14 +51,4 @@ public class Card : ScriptableObject //Scriptable Object allows Unity to create 
     public string Type { get => type; set => type = value; }
     public string[] Types { get => types; set => types = value; }
 
-    /**
-     * This part of code is for initializing object from code
-     **/
-
-    public static Card CreateInstance(string cardName, string type, string text, int power, int toughness) //Custom Constructor
-    {
-        var data = ScriptableObject.CreateInstance<Card>(); //an abstract var to hold the instance
-        data.Init(cardName, type, text, power, toughness); //initialize the new data (WOW!? SELF EXPLANATORY AMIRITE??????)
-        return data;
-    }
 }

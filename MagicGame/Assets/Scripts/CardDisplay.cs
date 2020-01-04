@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;
+    /*public Card card;
 
     public Text nameText;
     public Image artImage;
@@ -29,5 +29,5 @@ public class CardDisplay : MonoBehaviour
         type.text = card.type;
 
         damageandhealth.text = attack.ToString() + "/" + damage.ToString();
-    }
+    }*/
 }
