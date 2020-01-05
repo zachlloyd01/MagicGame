@@ -6,6 +6,7 @@ using UnityEditor;
 public class Create_Cards : MonoBehaviour
 {
 
+
     public GameObject cardPrefab; //The prefab to create instances from
 
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class Create_Cards : MonoBehaviour
         string path = "C:\\Users\\Zach\\Downloads\\ELD.json";
         string JSONString = File.ReadAllText(path);
         Debug.Log(JSONString);
-        cardList[] list = JsonUtility.FromJson<cardList[]>(JSONString);
+        cardList[] list = JsonHelper.FromJson<cardList>(JSONString);
         foreach (cardList List in list)
         {
             Debug.Log(List.name);
