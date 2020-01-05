@@ -8,6 +8,8 @@ public class Create_Cards : MonoBehaviour
 
 
     public GameObject cardPrefab; //The prefab to create instances from
+    public TextAsset textAsset;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +19,10 @@ public class Create_Cards : MonoBehaviour
 
     private void createobjects()
     {
-        string path = "C:\\Users\\Zach\\Downloads\\ELD.json";
-        string JSONString = File.ReadAllText(path);
+        string JSONString = File.ReadAllText(AssetDatabase.GetAssetPath(textAsset));
         Debug.Log(JSONString);
         cardList[] list = JsonHelper.FromJson<cardList>(JSONString);
-        foreach (cardList List in list)
-        {
-            Debug.Log(List.name);
-        }
+        Debug.Log(list[0]);
 /*        Card bruh = new Card();
         bruh.Artist = "bruh";
         AssetDatabase.CreateAsset(bruh, "Assets/NewScripableObject.asset");
