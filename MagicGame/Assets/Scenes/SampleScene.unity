@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 732261256224125820, guid: 57b25315de5d16342b89f2d3c99a0764,
     type: 3}
+  textAsset: {fileID: 4900000, guid: dd869b4a0443fad45b6c745a664664d8, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

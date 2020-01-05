@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEngine;
 using UnityEditor;
+using System.Web.Script.Serialization;
 
 public class Create_Cards : MonoBehaviour
 {
@@ -19,10 +20,11 @@ public class Create_Cards : MonoBehaviour
 
     private void createobjects()
     {
-        string JSONString = File.ReadAllText(AssetDatabase.GetAssetPath(textAsset));
-        Debug.Log(JSONString);
-        cardList[] list = JsonHelper.FromJson<cardList>(JSONString);
-        Debug.Log(list[0]);
+        var JsonObj = new JavaScriptSerializer().Deserialize<RootObj>(textAsset.text);
+        foreach(var obj in JsonObj.objectList)
+        {
+            Debug.Log(obj.artist);
+        }
 /*        Card bruh = new Card();
         bruh.Artist = "bruh";
         AssetDatabase.CreateAsset(bruh, "Assets/NewScripableObject.asset");
@@ -32,20 +34,26 @@ public class Create_Cards : MonoBehaviour
 
 public class cardList //The class to attach json data to
 {
-    public string artist;
-    public string[] colors;
-    public string convertedManaCost;
-    public string manaCost;
-    public string name;
-    public string number;
-    public string originalText;
-    public string originalType;
-    public string power;
-    public string rarity;
-    public string[] rulings;
-    public string[] subtypes;
-    public string[] supertypes;
-    public string type;
-    public string flavorText;
-    public string description;
+    public string artist { get; set;  }
+    public string[] colors { get; set; }
+    public string convertedManaCost { get; set; }
+    public string manaCost { get; set; }
+    public string name { get; set; }
+    public string number { get; set; }
+    public string originalText { get; set; }
+    public string originalType { get; set; }
+    public string power { get; set; }
+    public string rarity { get; set;  }
+public string[] rulings { get; set; }
+    public string[] subtypes { get; set; }
+    public string[] supertypes { get; set; }
+    public string type { get; set; }
+    public string flavorText { get; set; }
+    public string description { get; set; }
+}
+
+public class RootObj
+{
+    public string objectType { get; set; }
+    public List<cardList> objectList { get; set; }
 }
