@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
-public class Card : ScriptableObject //Scriptable Object allows Unity to create instances of this object from the editor
+public class cardGenerate : ScriptableObject //Scriptable Object allows Unity to create instances of this object from the editor
 {
 
     // Card Attributes
@@ -30,7 +30,7 @@ public class Card : ScriptableObject //Scriptable Object allows Unity to create 
     private string[] types; // ex. Artifact Creature
 
 
-    public Card() { }
+    public cardGenerate() { }
     // recieve & send attributes through get & set
     public string Artist { get => artist; set => artist = value; }
     public Sprite Artwork { get => artwork; set => artwork = value; }
