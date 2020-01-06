@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725582b689707774fb81d3eb0c771dfd, type: 3}
-  m_Name: NewScripableObject
+  m_Script: {fileID: 11500000, guid: 7ec0487a79edabf46be47130c66fcda4, type: 3}
+  m_Name: TestCard
   m_EditorClassIdentifier: 
-  flavorText: 
-  attack: 0
-  damage: 0

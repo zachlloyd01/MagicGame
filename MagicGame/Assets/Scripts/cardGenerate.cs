@@ -24,7 +24,7 @@ public class cardGenerate : ScriptableObject //Scriptable Object allows Unity to
     private string[] supertypes; // ex. Legendary
     private string text; // oracle text
     private int power;
-    private string toughness;
+    private int toughness;
     private string type; // ex. Legendary Artifact Creatu
 
     private string[] types; // ex. Artifact Creature
@@ -47,7 +47,7 @@ public class cardGenerate : ScriptableObject //Scriptable Object allows Unity to
     public string[] Subtypes { get => subtypes; set => subtypes = value; }
     public string[] Supertypes { get => supertypes; set => supertypes = value; }
     public string Text { get => text; set => text = value; }
-    public string Toughness { get => toughness; set => toughness = value; }
+    public int Toughness { get => toughness; set => toughness = value; }
     public string Type { get => type; set => type = value; }
     public string[] Types { get => types; set => types = value; }
 

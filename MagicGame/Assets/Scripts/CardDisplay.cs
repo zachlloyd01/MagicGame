@@ -6,28 +6,33 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    /*public Card card;
+    public cardGenerate card;
 
     public Text nameText;
+
     public Image artImage;
     public Text description;
 
-    private int damage;
+    private int toughness;
     private int attack;
 
     public Text type;
     public Text damageandhealth;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         nameText.text = card.Name;
-        artImage.sprite = card.artwork;
-        description.text = card.description;
-        damage = card.damage;
-        attack = card.attack;
-        type.text = card.type;
+        artImage.sprite = card.Artwork;
+        description.text = card.Text;
+        toughness = card.Toughness;
+        attack = card.Power;
+        type.text = card.Type;
 
-        damageandhealth.text = attack.ToString() + "/" + damage.ToString();
-    }*/
+        damageandhealth.text = attack.ToString() + "/" + toughness.ToString();
+    }
+    private void Update()
+    {
+        
+    }
 }
