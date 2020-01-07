@@ -22,6 +22,15 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        setVals();
+    }
+    private void Update()
+    {
+
+    }
+
+    public void setVals()
+    {
         nameText.text = card.Name;
         artImage.sprite = card.Artwork;
         description.text = card.Text;
@@ -31,8 +40,5 @@ public class CardDisplay : MonoBehaviour
 
         damageandhealth.text = attack.ToString() + "/" + toughness.ToString();
     }
-    private void Update()
-    {
-        
-    }
+
 }
