@@ -32,17 +32,30 @@ public class DeckGenerate : MonoBehaviour
     //Used to add cards to hand
     private void OnMouseDown()
     {
-        /*int choice = Random.Range(0, deckList.Count - 1);
-
+        int choice = Random.Range(0, deckList.Count - 1);
+        cardGenerate card = generateCard(choice);
         //Parse through the JSON array of cards by card # here, to get the key value, then set that value to the string cardName @Andrew
-        string cardName = "";
+        cardSet(card);
+        removeFromList(choice);
+        //Set the rest of the card values to their respective key pairs here (I will do this once we can search through)
 
+    }
+
+    private cardGenerate generateCard(int choice)
+    {
+        string cardName = "";
         cardGenerate card = cardGenerate.CreateInstance(cardName) as cardGenerate; //Instance of the card
+        return card;
+    }
+
+    private void cardSet(cardGenerate card)
+    {
         cardPrefab.GetComponent<CardDisplay>().card = card; //set the values of the generated card
         cardPrefab = Instantiate(cardPrefab); //Instantiate into the scene
-        
-        //Set the rest of the card values to their respective key pairs here (I will do this once we can search through*/
+    }
 
-        Debug.Log("object clicked big boy");
+    private void removeFromList(int choice)
+    {
+        deckList.Remove(deckList[choice]);
     }
 }
