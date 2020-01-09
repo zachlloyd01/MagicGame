@@ -49,6 +49,8 @@ MonoBehaviour:
   fileList: {fileID: 4900000, guid: 46ebef4f054a479499b051323ac88dec, type: 3}
   cardPrefab: {fileID: 732261256224125820, guid: 57b25315de5d16342b89f2d3c99a0764,
     type: 3}
+  handList: 
+  hand: {fileID: 4555008952400092055, guid: 05c8fce8be1023344881aba571f5b614, type: 3}
 --- !u!212 &7299981051526703743
 SpriteRenderer:
   m_ObjectHideFlags: 0

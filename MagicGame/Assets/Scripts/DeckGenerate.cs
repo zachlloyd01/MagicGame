@@ -31,13 +31,12 @@ public class DeckGenerate : MonoBehaviour
             }
         }
         hand = Instantiate(hand);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     //Used to add cards to hand

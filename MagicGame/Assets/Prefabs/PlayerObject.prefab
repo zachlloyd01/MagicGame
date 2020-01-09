@@ -77,3 +77,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9ae432983927344ac557f511c12606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeck: {fileID: 7299981051526703738, guid: 51d6cee867e7827479dc7e8648b64111,
+    type: 3}
