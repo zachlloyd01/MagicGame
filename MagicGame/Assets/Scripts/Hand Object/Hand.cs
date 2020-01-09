@@ -20,6 +20,7 @@ public class Hand : MonoBehaviour
             cardGenerate card = generateCard();
             
         }
+        transform.parent = GameObject.Find("Board").transform;
     }
 
     // Update is called once per frame

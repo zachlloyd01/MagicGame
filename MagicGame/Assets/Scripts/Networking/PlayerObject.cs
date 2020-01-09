@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour
 {
 
-    public GameObject playerDeck;
+    public GameObject board;
     // Start is called before the first frame update
     void Start()
     {
-        playerDeck = Instantiate(playerDeck);
+        board = Instantiate(board);
+        board.transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame

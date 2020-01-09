@@ -31,6 +31,7 @@ public class DeckGenerate : MonoBehaviour
             }
         }
         hand = Instantiate(hand);
+        transform.parent = GameObject.Find("Board").transform;
     }
 
     // Update is called once per frame
