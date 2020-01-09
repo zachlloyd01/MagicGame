@@ -7,5 +7,5 @@
 - [Jake and Ethan's set](https://docs.google.com/spreadsheets/d/118sicM5PYTXLa5y1rf0zqNot6lzN8Z6GNrXcFqIKWg8/edit?usp=sharing)
 
 
-###Networking
+### Networking
 - Do not delete the 'preload scene', it boots the scripts whoich run the whole time. It should be loaded prior to the loading of even the first real game scene.
