@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 public class DeckGenerate : MonoBehaviour
 {
@@ -11,16 +12,26 @@ public class DeckGenerate : MonoBehaviour
 
     public GameObject cardPrefab;
 
-    private Random rand = new Random();
+    public List<int> handList;
+
+    public GameObject hand;
+
+
+    private static System.Random rand = new System.Random();
 
     // Start is called before the first frame update
     void Start()
     {
-        string[] fLines = Regex.Split(fileList.text, "\n|\r|\r\n");
-        foreach (string card in fLines)
+        createList();
+        if (handList.Count <= 7)
         {
-            deckList.Add(int.Parse(card));
+            for (int i = 0; i < deckList.Count; i++)
+            {
+                handList.Add(deckList[i]);
+            }
         }
+        hand = Instantiate(hand);
+        
     }
 
     // Update is called once per frame
@@ -32,17 +43,17 @@ public class DeckGenerate : MonoBehaviour
     //Used to add cards to hand
     private void OnMouseDown()
     {
-        int choice = Random.Range(0, deckList.Count - 1);
-        cardGenerate card = generateCard(choice);
-        //Parse through the JSON array of cards by card # here, to get the key value, then set that value to the string cardName @Andrew
+        cardGenerate card = generateCard();
+        
         cardSet(card);
-        removeFromList(choice);
-        //Set the rest of the card values to their respective key pairs here (I will do this once we can search through)
+        removeFromList(deckList.Count - 1);
+        
 
     }
 
-    private cardGenerate generateCard(int choice)
+    private cardGenerate generateCard()
     {
+        //Parse through the JSON array of cards by card # here, to get the key value, then set that value to the string cardName @Andrew
         string cardName = "";
         cardGenerate card = cardGenerate.CreateInstance(cardName) as cardGenerate; //Instance of the card
         return card;
@@ -52,10 +63,22 @@ public class DeckGenerate : MonoBehaviour
     {
         cardPrefab.GetComponent<CardDisplay>().card = card; //set the values of the generated card
         cardPrefab = Instantiate(cardPrefab); //Instantiate into the scene
+        //Set the rest of the card values to their respective key pairs here (I will do this once we can search through)
     }
 
     private void removeFromList(int choice)
     {
         deckList.Remove(deckList[choice]);
     }
+
+    private void createList ()
+    {
+        string[] fLines = Regex.Split(fileList.text, "\n|\r|\r\n");
+        foreach (string card in fLines)
+        {
+            deckList.Add(int.Parse(card));
+        }
+        deckList.Shuffle();
+    }
+
 }
