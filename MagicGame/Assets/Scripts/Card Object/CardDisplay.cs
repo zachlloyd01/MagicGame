@@ -41,4 +41,12 @@ public class CardDisplay : MonoBehaviour
         damageandhealth.text = attack.ToString() + "/" + toughness.ToString();
     }
 
+    private void OnMouseDown()
+    {
+        if (transform.parent == GameObject.Find("Hand").transform)
+        {
+            transform.parent = GameObject.Find("Board").transform;
+        }
+    }
+
 }
