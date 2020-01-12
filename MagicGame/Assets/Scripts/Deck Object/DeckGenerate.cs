@@ -12,10 +12,6 @@ public class DeckGenerate : MonoBehaviour
 
     public GameObject cardPrefab;
 
-    public List<int> handList;
-
-    public GameObject hand;
-
 
     private static System.Random rand = new System.Random();
 
@@ -23,15 +19,6 @@ public class DeckGenerate : MonoBehaviour
     void Start()
     {
         createList();
-        if (handList.Count <= 7)
-        {
-            for (int i = 0; i < deckList.Count; i++)
-            {
-                handList.Add(deckList[i]);
-            }
-        }
-        hand = Instantiate(hand);
-        transform.parent = GameObject.Find("Board").transform;
     }
 
     // Update is called once per frame
@@ -62,7 +49,6 @@ public class DeckGenerate : MonoBehaviour
     private void cardSet(cardGenerate card)
     {
         cardPrefab.GetComponent<CardDisplay>().card = card; //set the values of the generated card
-        cardPrefab = Instantiate(cardPrefab); //Instantiate into the scene
         //Set the rest of the card values to their respective key pairs here (I will do this once we can search through)
     }
 

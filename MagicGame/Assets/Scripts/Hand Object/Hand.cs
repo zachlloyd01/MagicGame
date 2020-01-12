@@ -12,9 +12,7 @@ public class Hand : MonoBehaviour
     public GameObject cardPrefab;
     // Start is called before the first frame update
     void Start()
-    {
-        deck = GameObject.Find("Deck");
-        handList = deck.GetComponent<DeckGenerate>().handList;
+    {   
         for (int i = 0; i < handList.Count; i++)
         {
             cardGenerate card = generateCard();

@@ -6,11 +6,12 @@ public class PlayerObject : MonoBehaviour
 {
 
     public GameObject board;
+    public GameObject deck;
+    public GameObject hand;
     // Start is called before the first frame update
     void Start()
     {
-        board = Instantiate(board);
-        board.transform.parent = gameObject.transform;
+        
     }
 
     // Update is called once per frame
@@ -18,4 +19,7 @@ public class PlayerObject : MonoBehaviour
     {
         
     }
+
+    #region Spawn Commands
+    #endregion
 }
