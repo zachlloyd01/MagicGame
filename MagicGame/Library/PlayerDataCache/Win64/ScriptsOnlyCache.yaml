@@ -1,12 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Board
     - CardDisplay
     - Create_Cards
+    - DeckGenerate
+    - Hand
     - MainMenu
     - PlayerNameInput
     - Tap
+    - spawner
     PhotonUnityNetworking.dll:
+    - Photon.Pun.PhotonView
     - Photon.Pun.ServerSettings
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -36,21 +41,6 @@ ScriptsOnlyBuild:
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
-    Assets/Scene_Main.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
     Assets/Scenes/MainMenu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -77,6 +67,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9718}
     - Class: 114
+      Script: {instanceID: 9798}
+    - Class: 114
       Script: {instanceID: 9872}
     - Class: 114
       Script: {instanceID: 9916}
@@ -87,33 +79,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10014}
     - Class: 114
-      Script: {instanceID: 10244}
+      Script: {instanceID: 10242}
     - Class: 114
-      Script: {instanceID: 10488}
+      Script: {instanceID: 10492}
     - Class: 114
-      Script: {instanceID: 10520}
+      Script: {instanceID: 10524}
     - Class: 114
-      Script: {instanceID: 10844}
+      Script: {instanceID: 10848}
     - Class: 114
-      Script: {instanceID: 10976}
+      Script: {instanceID: 10944}
     - Class: 114
-      Script: {instanceID: 10984}
+      Script: {instanceID: 10980}
     - Class: 114
-      Script: {instanceID: 11028}
+      Script: {instanceID: 10988}
     - Class: 114
-      Script: {instanceID: 11240}
+      Script: {instanceID: 11032}
     - Class: 114
-      Script: {instanceID: 11258}
+      Script: {instanceID: 11244}
     - Class: 114
-      Script: {instanceID: 11470}
+      Script: {instanceID: 11262}
     - Class: 114
-      Script: {instanceID: 11542}
+      Script: {instanceID: 11474}
     - Class: 114
-      Script: {instanceID: 11602}
+      Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11746}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 12004}
+      Script: {instanceID: 11606}
+    - Class: 114
+      Script: {instanceID: 11750}
+    - Class: 114
+      Script: {instanceID: 11922}
+    - Class: 114
+      Script: {instanceID: 12008}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -127,6 +125,59 @@ ScriptsOnlyBuild:
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Scene_Main.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9798}
+    - Class: 114
+      Script: {instanceID: 9916}
+    - Class: 114
+      Script: {instanceID: 9938}
+    - Class: 114
+      Script: {instanceID: 9988}
+    - Class: 114
+      Script: {instanceID: 10356}
+    - Class: 114
+      Script: {instanceID: 10848}
+    - Class: 114
+      Script: {instanceID: 10944}
+    - Class: 114
+      Script: {instanceID: 11576}
+    - Class: 114
+      Script: {instanceID: 11922}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
@@ -301,12 +352,6 @@ ScriptsOnlyBuild:
     className: NetworkTransform
   - hash:
       serializedVersion: 2
-      Hash: 474ee3c4ffc33c158954b6e432b3a320
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerObject
-  - hash:
-      serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -389,6 +434,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 474ee3c4ffc33c158954b6e432b3a320
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: spawner
   - hash:
       serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
@@ -739,7 +790,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 6bea846e1b68326a6b404075492fd5da
+      Hash: c7a1cfbcd815f35b6700d8538ef4094e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Board
@@ -926,5 +977,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
-  - Assets/Scene_Main.unity
+  - Assets/Scenes/Scene_Main.unity
   playerPath: C:/Users/Zach/Desktop/MagicGame.exe

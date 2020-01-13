@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerObject : MonoBehaviour
+public class Board : MonoBehaviour
 {
-
-    public GameObject board;
-    public GameObject deck;
-    public GameObject hand;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = 20;
     }
 
     // Update is called once per frame
@@ -20,6 +17,8 @@ public class PlayerObject : MonoBehaviour
         
     }
 
-    #region Spawn Commands
-    #endregion
+    public void increment (int amount)
+    {
+        health += amount;
+    }
 }

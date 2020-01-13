@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6226573522488300150}
   - component: {fileID: 6226573522488300151}
+  - component: {fileID: 1951743356485588648}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -43,4 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a9277c586f0b042ab31a9ba9f4ce6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: {fileID: 7299981051526703738, guid: 51d6cee867e7827479dc7e8648b64111, type: 3}
+  health: 0
+--- !u!114 &1951743356485588648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226573522488300152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
