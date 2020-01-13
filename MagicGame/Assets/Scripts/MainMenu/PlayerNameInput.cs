@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 
 public class PlayerNameInput : MonoBehaviour
 {
-    [SerializeField] private InputField nameInputField;
-    [SerializeField] private Button continueButton;
+    [SerializeField] private TMP_InputField nameInputField = null;
+    [SerializeField] private Button continueButton = null;
 
     private const string PlayerPrefsNameKey = "PlayerName";
 
-    private void Start()
-    {
-        //continueButton.interactable = !string.IsNullOrEmpty(nameInputField.text);
-        SetUpInputField();
-    }
+    private void Start() => SetUpInputField();
 
     private void SetUpInputField()
     {
-        if(!PlayerPrefs.HasKey(PlayerPrefsNameKey))
-        {
-            return;
-        }
+        if (!PlayerPrefs.HasKey(PlayerPrefsNameKey)) { return; }
 
         string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
 
@@ -31,9 +25,9 @@ public class PlayerNameInput : MonoBehaviour
         SetPlayerName(defaultName);
     }
 
-    public void SetPlayerName (string name)
+    public void SetPlayerName(string name)
     {
-       // continueButton.interactable = !string.IsNullOrEmpty(name);
+        continueButton.interactable = !string.IsNullOrEmpty(name);
     }
 
     public void SavePlayerName()
@@ -45,3 +39,4 @@ public class PlayerNameInput : MonoBehaviour
         PlayerPrefs.SetString(PlayerPrefsNameKey, playerName);
     }
 }
+
