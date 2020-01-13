@@ -38,8 +38,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.Text
-    com.unity.multiplayer-hlapi.Runtime.dll:
-    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/Scenes/MainMenu.unity:
     - Class: 1
@@ -81,37 +79,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10242}
     - Class: 114
-      Script: {instanceID: 10492}
+      Script: {instanceID: 10490}
     - Class: 114
-      Script: {instanceID: 10524}
+      Script: {instanceID: 10522}
     - Class: 114
-      Script: {instanceID: 10848}
+      Script: {instanceID: 10846}
     - Class: 114
-      Script: {instanceID: 10944}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 10980}
+      Script: {instanceID: 10978}
     - Class: 114
-      Script: {instanceID: 10988}
+      Script: {instanceID: 10986}
     - Class: 114
-      Script: {instanceID: 11032}
+      Script: {instanceID: 11030}
     - Class: 114
-      Script: {instanceID: 11244}
+      Script: {instanceID: 11242}
     - Class: 114
-      Script: {instanceID: 11262}
+      Script: {instanceID: 11260}
     - Class: 114
-      Script: {instanceID: 11474}
+      Script: {instanceID: 11472}
     - Class: 114
-      Script: {instanceID: 11546}
+      Script: {instanceID: 11544}
     - Class: 114
-      Script: {instanceID: 11576}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11750}
+      Script: {instanceID: 11748}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11920}
     - Class: 114
-      Script: {instanceID: 12008}
+      Script: {instanceID: 12006}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -158,15 +156,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9988}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 10354}
     - Class: 114
-      Script: {instanceID: 10848}
+      Script: {instanceID: 10846}
     - Class: 114
-      Script: {instanceID: 10944}
+      Script: {instanceID: 10942}
     - Class: 114
-      Script: {instanceID: 11576}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11920}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -790,7 +788,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: c7a1cfbcd815f35b6700d8538ef4094e
+      Hash: 9ef008156b8df82a2d1a6ea9b692162e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Board

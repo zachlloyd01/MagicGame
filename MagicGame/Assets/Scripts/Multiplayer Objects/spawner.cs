@@ -24,13 +24,8 @@ public class spawner : MonoBehaviour
 
     private void makeObjects()
     {
+        board.GetComponent<Board>().owner = PhotonNetwork.NickName;
         board = PhotonNetwork.Instantiate(board.name, Vector3.zero, Quaternion.identity); //Put object onto the server at location
         board.name = $"{PhotonNetwork.NickName} - Board"; //Set object name
-        deck = PhotonNetwork.Instantiate(deck.name, Vector3.zero, Quaternion.identity); //Put object onto the server at location
-        deck.name = $"{PhotonNetwork.NickName} - Deck"; //Set object name
-        deck.transform.parent = board.transform; //Parent is user's board state
-        hand = PhotonNetwork.Instantiate(hand.name, Vector3.zero, Quaternion.identity); //Put object onto the server at location
-        hand.name = $"{PhotonNetwork.NickName} - Hand"; //Set object name
-        hand.transform.parent = board.transform; //parent is user's board state
     }
 }
