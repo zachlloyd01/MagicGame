@@ -7,8 +7,6 @@ public class spawner : MonoBehaviour
 {
 
     [SerializeField] private GameObject board;
-    [SerializeField] private GameObject deck;
-    [SerializeField] private GameObject hand;
 
     // Start is called before the first frame update
     void Start()

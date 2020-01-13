@@ -10,6 +10,8 @@ public class Board : MonoBehaviour
 
     public GameObject deck;
     public GameObject hand;
+
+    private 
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class Board : MonoBehaviour
         hand = PhotonNetwork.Instantiate(hand.name, Vector3.zero, Quaternion.identity); //Put object onto the server at location
         hand.name = $"{PhotonNetwork.NickName} - Hand"; //Set object name
         hand.GetComponent<PhotonView>().TransferOwnership(gameObject.GetComponent<PhotonView>().Owner);
+        
         hand.transform.parent = gameObject.transform; //parent is user's board state
     }
 }
