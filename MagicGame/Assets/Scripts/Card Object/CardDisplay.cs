@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,8 @@ public class CardDisplay : MonoBehaviour
 
     public Text type;
     public Text damageandhealth;
+
+    public bool isTapped = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -43,9 +46,26 @@ public class CardDisplay : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (transform.parent == GameObject.Find("Hand").transform)
+        if (transform.parent == GameObject.Find($"{gameObject.GetComponent<PhotonView>().Owner} - Hand").transform) //If the parent of the card is the hand of the same owner
         {
-            transform.parent = GameObject.Find("Board").transform;
+            transform.parent = GameObject.Find($"{gameObject.GetComponent<PhotonView>().Owner} - Board").transform; //Move it to that player's board
+        }
+        else if(transform.parent == GameObject.Find($"{gameObject.GetComponent<PhotonView>().Owner} - Board").transform) //If the card is already on the board
+        {
+            if(!isTapped) //Tapped?
+            {
+                gameObject.transform.Rotate(0, 90, 0); //Rotate the card 90 degrees
+                isTapped = true;
+            }
+            else
+            {
+                gameObject.transform.Rotate(0, -90, 0); //Rotate it back
+                isTapped = false;
+            }
+        }
+        else
+        {
+            Destroy(gameObject); //If it is has no parent/owner, destroy it so it doesn't cause errors
         }
     }
 
