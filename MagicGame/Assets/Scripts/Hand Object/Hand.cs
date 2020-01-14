@@ -30,7 +30,7 @@ public class Hand : MonoBehaviour
 
     private cardGenerate generateCard()
     {
-        //Parse through the JSON array of cards by card # here, to get the key value, then set that value to the string cardName @Andrew
+        //Parse through the JSON array of cards by card name here, to get the key values, then set that value to the string cardName @Andrew
         string cardName = "";
         cardGenerate card = cardGenerate.CreateInstance(cardName) as cardGenerate; //Instance of the card
         return card;

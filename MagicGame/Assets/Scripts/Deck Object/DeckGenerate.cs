@@ -7,7 +7,7 @@ using System.Linq;
 
 public class DeckGenerate : MonoBehaviour
 {
-    public List<int> deckList;
+    public List<string> deckList;
     public TextAsset fileList;
 
     public GameObject cardPrefab;
@@ -62,7 +62,7 @@ public class DeckGenerate : MonoBehaviour
         string[] fLines = Regex.Split(fileList.text, "\n|\r|\r\n");
         foreach (string card in fLines)
         {
-            deckList.Add(int.Parse(card));
+            deckList.Add(card);
         }
         deckList.Shuffle();
     }
