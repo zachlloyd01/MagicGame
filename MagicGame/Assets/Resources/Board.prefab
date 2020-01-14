@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  owner: jnjnjnjn
+  owner: 
   deck: {fileID: 7299981051526703738, guid: 51d6cee867e7827479dc7e8648b64111, type: 3}
   hand: {fileID: 4555008952400092055, guid: 05c8fce8be1023344881aba571f5b614, type: 3}
 --- !u!114 &1951743356485588648

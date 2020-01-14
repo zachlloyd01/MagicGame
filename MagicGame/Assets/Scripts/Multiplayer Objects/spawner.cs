@@ -17,7 +17,7 @@ public class spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void makeObjects()
@@ -25,5 +25,11 @@ public class spawner : MonoBehaviour
         board.GetComponent<Board>().owner = PhotonNetwork.NickName;
         board = PhotonNetwork.Instantiate(board.name, Vector3.zero, Quaternion.identity); //Put object onto the server at location
         board.name = $"{PhotonNetwork.NickName} - Board"; //Set object name
+        GameObject boardview = new GameObject();
+        boardview.AddComponent<Camera>();
+        boardview.GetComponent<Camera>().backgroundColor = Color.red;
+        boardview.transform.position = board.transform.position;
+        boardview.name = $"{PhotonNetwork.NickName} - Camera";
+        boardview = Instantiate(boardview);
     }
 }

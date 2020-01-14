@@ -150,8 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   board: {fileID: 6226573522488300152, guid: a62421f7ec0636a4ca9bfb8cb753b82a, type: 3}
-  deck: {fileID: 7299981051526703738, guid: 51d6cee867e7827479dc7e8648b64111, type: 3}
-  hand: {fileID: 4555008952400092055, guid: 05c8fce8be1023344881aba571f5b614, type: 3}
 --- !u!4 &337864572
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &626196343
 AudioListener:
   m_ObjectHideFlags: 0
