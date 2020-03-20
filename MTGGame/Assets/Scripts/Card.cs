@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
     private string url;
     public TextAsset _CardData;
     public CardData data;
+    private Image image;
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ public class Card : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        image = GetComponent<Image>();
         StartCoroutine(RenderSprite());
     }
 
@@ -30,6 +33,7 @@ public class Card : MonoBehaviour
     {
         WWW www = new WWW(url);
         yield return www;
-        gameObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        image.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        image.rectTransform.sizeDelta = new Vector2(www.texture.width, www.texture.height);
     }
 }
