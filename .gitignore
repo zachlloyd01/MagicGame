@@ -58,4 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-MagicGame/Temp/UnityLockfile
+#Ignore unitylock file so it can be pushed while running Unity
+MTGGame/Temp/UnityLockfile
