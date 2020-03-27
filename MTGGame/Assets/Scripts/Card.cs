@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IPointerEnterHandler
 {
     private string url;
     public TextAsset _CardData;
@@ -21,6 +23,7 @@ public class Card : MonoBehaviour
     {
         image = GetComponent<Image>();
         StartCoroutine(RenderSprite());
+        gameObject.name = data.name;
     }
 
     // Update is called once per frame
@@ -31,9 +34,16 @@ public class Card : MonoBehaviour
 
     private IEnumerator RenderSprite()
     {
-        WWW www = new WWW(url);
-        yield return www;
-        image.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
-        image.rectTransform.sizeDelta = new Vector2(www.texture.width, www.texture.height);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        yield return www.SendWebRequest();
+        Texture2D cardTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        image.sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
+        image.transform.localScale = new Vector2(2.5f, 3.5f);
+        image.transform.position = Vector3.zero;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }
