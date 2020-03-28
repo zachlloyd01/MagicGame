@@ -9,7 +9,7 @@ public class DeckBuilderStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(CardData card in GameObject.FindGameObjectWithTag("Finish").GetComponent<ListStorage>().cards)
+        foreach(CardData card in GameObject.FindGameObjectWithTag("Finish").GetComponent<ListStorage>().cards) // TODO: Fix not found error
         {
             Instantiate(cardPrefab);
             cardPrefab.GetComponent<Builder_Card>().SetValues(JsonConvert.SerializeObject(card));
@@ -19,6 +19,6 @@ public class DeckBuilderStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
