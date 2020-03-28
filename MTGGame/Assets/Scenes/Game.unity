@@ -217,3 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730359d6b2087264d9ea7dd7641cef38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Players: []
+  Battlefield: []
+  Stack: []
+  Exile: []
+  cardPrefab: {fileID: 2345328763062151311, guid: e9555f17f7d34834caafe557e55fa4a6,
+    type: 3}

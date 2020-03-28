@@ -39,10 +39,10 @@ public class Player : MonoBehaviour {
   void fillDeck () { // fills deck with cards
     int size = 60; // normal deck size
     for (int i = 0; i < size; i++) {
-      Deck.Add(new GameObject("Card #" + (i + 1))); // TODO: Set up for prefab
+      Deck.Add(Instantiate(this.transform.parent.GetComponent<GameMaster>().cardPrefab, new Vector3(0, 0, 0), Quaternion.identity));
       Deck[i].transform.parent = this.transform;
       Deck[i].AddComponent<Card>();
-      Deck[i].GetComponent<Card>().SetValues(null); // TODO: Set up prebuilt decks
+      Deck[i].GetComponent<Card>().SetValues("World Champion"); // TODO: Set up prebuilt decks
     }
   }
 }
