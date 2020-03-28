@@ -37,6 +37,7 @@ public class RelatedUris
     public string mtgtop8 { get; set; }
 }
 
+[System.Serializable]
 public class CardData
 {
     public string @object { get; set; }
