@@ -7,17 +7,13 @@ public class GameMaster : MonoBehaviour {
   public List<GameObject> Battlefield; // order does not matter
   public List<GameObject> Stack; // ordered
   public List<GameObject> Exile; // order does not matter
-  public GameObject cardPrefab;
 
+  public GameObject cardPrefab;
   public TextAsset sampleCard; //temporary
-  
+
   void Start() {
     Players = new GameObject[2];
     fillGame();
-  }
-
-  void Update() {
-
   }
 
   void fillGame () {
