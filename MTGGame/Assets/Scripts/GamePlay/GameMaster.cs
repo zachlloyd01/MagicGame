@@ -9,6 +9,8 @@ public class GameMaster : MonoBehaviour {
   public List<GameObject> Exile; // order does not matter
   public GameObject cardPrefab;
 
+  public TextAsset sampleCard; //temporary
+  
   void Start() {
     Players = new GameObject[2];
     fillGame();

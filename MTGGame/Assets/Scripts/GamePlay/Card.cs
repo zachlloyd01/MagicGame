@@ -13,9 +13,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler {
   public CardData data;
   private Image image;
 
-  public void SetValues (string _CardData) { // sets up card based off of card #
+  public void SetValues (TextAsset _CardData) { // sets up card based off of card #
     image = GetComponent<Image>();
-    data = JsonConvert.DeserializeObject<CardData>(_CardData);
+    data = JsonConvert.DeserializeObject<CardData>(_CardData.text);
     url = data.image_uris.png;
     StartCoroutine(RenderSprite());
     gameObject.name = data.name;
