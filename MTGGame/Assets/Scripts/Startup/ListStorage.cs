@@ -25,7 +25,7 @@ public class ListStorage : MonoBehaviour
             cards.Add(newCard);
 
         }
-        SceneManager.LoadScene("data_create", LoadSceneMode.Single);
+        SceneManager.LoadScene("DeckBuilding", LoadSceneMode.Single);
     }
 
     // Update is called once per frame
