@@ -62,4 +62,4 @@ crashlytics-build.properties
 MTGGame/Temp/UnityLockfile
 
 #Ignore temp folder
-temp/
+Temp/
