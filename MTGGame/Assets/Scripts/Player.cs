@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-  public List<Card> Deck; // ordered
-  public List<Card> Hand; // order does not matter
-  public List<Card> Graveyard; // ordered
+  public List<GameObject> Deck; // ordered
+  public List<GameObject> Hand; // order does not matter
+  public List<GameObject> Graveyard; // ordered
 
-  public Player() { // on creation
-    Deck = new List<Card>();
-    Hand = new List<Card>();
-    Graveyard = new List<Card>();
+  void Start() { // on creation
+    Deck = new List<GameObject>();
+    Hand = new List<GameObject>();
+    Graveyard = new List<GameObject>();
 
     fillDeck();
     shuffleDeck();
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
     System.Random rng = new System.Random();
     while (n > 1) {
       int k = rng.Next(n--);
-      Card temp = Deck[n];
+      GameObject temp = Deck[n];
       Deck[n] = Deck[k];
       Deck[k] = temp;
     }
@@ -36,9 +36,13 @@ public class Player : MonoBehaviour {
     }
   }
 
-  void fillDeck () {
-    for (int i = 0; i < 60; i++) {
-      Deck.Add(new Card());
+  void fillDeck () { // fills deck with cards
+    int size = 60; // normal deck size
+    for (int i = 0; i < size; i++) {
+      Deck.Add(new GameObject("Card #" + (i + 1))); // TODO: Set up for prefab
+      Deck[i].transform.parent = this.transform;
+      Deck[i].AddComponent<Card>();
+      Deck[i].GetComponent<Card>().SetValues(null); // TODO: Set up prebuilt decks
     }
   }
 }

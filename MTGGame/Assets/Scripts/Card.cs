@@ -7,32 +7,18 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour, IPointerEnterHandler {
-  public string cardName; // Not using "name" because of object.name
   public int cmc; // TODO: Make mana cost object instead of cmc
 
   private string url;
-  public TextAsset _CardData;
   public CardData data;
   private Image image;
 
-  private void Awake() {
+  public void SetValues (TextAsset _CardData) { // sets up card based off of card #
+    image = GetComponent<Image>();
     data = JsonConvert.DeserializeObject<CardData>(_CardData.text);
     url = data.image_uris.png;
-  }
-
-  void Start() {
-    image = GetComponent<Image>();
     StartCoroutine(RenderSprite());
     gameObject.name = data.name;
-  }
-
-  // Update is called once per frame
-  void Update() {
-
-  }
-
-  public Card () { // init card
-    // do nothing
   }
 
   private IEnumerator RenderSprite() {
@@ -47,41 +33,4 @@ public class Card : MonoBehaviour, IPointerEnterHandler {
   public void OnPointerEnter(PointerEventData eventData) {
     throw new System.NotImplementedException();
   }
-}
-
-public class Land : Card {
-  public string type;
-
-  public Land(string type) {
-    this.cmc = 0;
-    this.type = type;
-  }
-}
-
-public class Creature : Card {
-  public int toughness;
-  public int currToughness;
-  public int power;
-}
-
-public class Artifact : Card {
-
-}
-
-public class Spell : Card {
-  public class Enchantment : Spell {
-
-  }
-
-  public class Instant : Spell {
-
-  }
-
-  public class Scorcery : Spell {
-
-  }
-}
-
-public class Planeswalker : Card {
-
 }

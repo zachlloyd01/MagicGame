@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour {
   public GameObject[] Players;
-  public List<Card> Battlefield;
-  public List<Card> Stack;
-  public List<Card> Exile;
+  public List<GameObject> Battlefield; // order does not matter
+  public List<GameObject> Stack; // ordered
+  public List<GameObject> Exile; // order does not matter
 
   void Start() {
     Players = new GameObject[2];
@@ -20,6 +20,7 @@ public class GameMaster : MonoBehaviour {
   void fillGame () {
     for (int i = 0; i < Players.Length; i++) {
       Players[i] = new GameObject("Player #" + (i + 1));
+      Players[i].transform.parent = this.transform;
       Players[i].AddComponent<Player>();
     }
   }
