@@ -18,10 +18,16 @@ public class DeckBuilderStart : MonoBehaviour
 
     private GameObject tempObject;
 
+    public GameObject deckBuilder;
+
+    public GameObject chooseList;
+
     public GameObject content;
     // Start is called before the first frame update
     void Start()
     {
+        deckBuilder.SetActive(false);
+        chooseList.SetActive(true);
         content.GetComponent<GridLayoutGroup>().padding.left = Convert.ToInt32(Screen.width * .2);
         content.GetComponent<GridLayoutGroup>().padding.right = Convert.ToInt32(Screen.width * .2);
         Exceptional<List<Card>> result = service.All();
