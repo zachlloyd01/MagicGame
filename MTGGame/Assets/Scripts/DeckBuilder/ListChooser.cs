@@ -7,6 +7,7 @@ public class ListChooser : MonoBehaviour
 {
     public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 
+
     public static string workingFile = "";
 
     public GameObject newListPanel;
@@ -20,9 +21,12 @@ public class ListChooser : MonoBehaviour
     public GameObject chooseList;
     private void Start()
     {
+        docs += @"\decks\";
         ButtonUI.SetActive(true);
         newListPanel.SetActive(false);   
     }
+
+    
     public void newList()
     {
         newListPanel.SetActive(true);

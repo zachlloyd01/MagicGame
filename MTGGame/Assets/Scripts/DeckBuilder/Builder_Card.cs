@@ -11,16 +11,33 @@ public class Builder_Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData) //display info panel
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnPointerExit(PointerEventData eventData) //remove info panel
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public void OnPointerClick(PointerEventData eventData) //add to deck
+    private void Update()
     {
-        throw new System.NotImplementedException();
+        GetComponent<BoxCollider2D>().size = GetComponent<Image>().sprite.rect.size;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+       
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        GameObject.Find("Manager").GetComponent<SaveToList>().cardName = gameObject.name;
+        GameObject.Find("Manager").GetComponent<SaveToList>().openPanel();
+        Debug.Log("open");
     }
 }
