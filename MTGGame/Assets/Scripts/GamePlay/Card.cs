@@ -22,6 +22,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler {
     UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
     yield return www.SendWebRequest();
     Texture2D cardTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+    cardTexture.filterMode = FilterMode.Point; // Removes pixel averaging
     image.sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
     // Debug.Log(image.texture.filterMode);
   }
