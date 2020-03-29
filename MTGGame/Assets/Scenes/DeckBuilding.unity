@@ -1131,7 +1131,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1264817453}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2076839000}
+        m_MethodName: Search
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1264817453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,6 +1827,7 @@ MonoBehaviour:
   searchBar: {fileID: 621902613}
   cardPrefab: {fileID: 2529185552639690375, guid: e5ce973719611cf469db42a8f36f3cd8,
     type: 3}
+  content: {fileID: 487589612}
 --- !u!114 &2076839001
 MonoBehaviour:
   m_ObjectHideFlags: 0

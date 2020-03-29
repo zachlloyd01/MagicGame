@@ -24,20 +24,12 @@ public class DeckBuilderStart : MonoBehaviour
         {
             var value = result.Value;
             for (int i = 0; i < value.Count; i++) {
-                Debug.Log(value[i].Name);
+                // Debug.Log(value[i].Name);
                 try
                 {
                     string url = value[i].ImageUrl.ToString();
                     string CardName = value[i].Name;
-                    StartCoroutine(GetSprite(url, CardName, Position));
-                    if(Position.x >= 889)
-                    {
-                        Position = new Vector3(-922f, Position.y - 415, 0);
-                    }
-                    else
-                    {
-                        Position += new Vector3(287, 0, 0);
-                    }
+                    StartCoroutine(GetSprite(url, CardName));
                     
                 }
                 catch
@@ -55,7 +47,7 @@ public class DeckBuilderStart : MonoBehaviour
     {
 
     }
-    public IEnumerator GetSprite(string url, string CardName, Vector3 spawnLocation)
+    public IEnumerator GetSprite(string url, string CardName)
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
