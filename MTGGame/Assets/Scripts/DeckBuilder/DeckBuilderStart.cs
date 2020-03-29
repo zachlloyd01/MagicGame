@@ -8,13 +8,13 @@ using MtgApiManager.Lib.Model;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using TMPro;
+using System;
 
 public class DeckBuilderStart : MonoBehaviour
 {
     public CardService service = new CardService();
     public GameObject cardPrefab;
     public Vector3 Position = new Vector3(-922f, 1669f, 0);
-    public Vector3 temp = new Vector3(5f, 0, 0);
 
     private GameObject tempObject;
 
@@ -22,6 +22,8 @@ public class DeckBuilderStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        content.GetComponent<GridLayoutGroup>().padding.left = Convert.ToInt32(Screen.width * .2);
+        content.GetComponent<GridLayoutGroup>().padding.right = Convert.ToInt32(Screen.width * .2);
         Exceptional<List<Card>> result = service.All();
         if(result.IsSuccess)
         {
