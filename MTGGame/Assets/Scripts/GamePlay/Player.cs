@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
   void drawCards (int amount) { // puts cards from library to hand
     for (int i = 0; i < amount; i++) {
       Hand.Add(Deck[0]);
-      StartCoroutine(Hand[i].GetComponent<Card>().RenderSprite()); // reveals card
+      StartCoroutine(Hand[i].GetComponent<Play_Card>().RenderSprite()); // reveals card
       Deck.RemoveAt(0);
     }
   }
@@ -55,8 +55,8 @@ public class Player : MonoBehaviour {
       float canvasSize = canvas.sizeDelta.x * canvas.transform.localScale.x;
       Deck.Add(Instantiate(prefab, new Vector2(canvasSize - cardLength / 2, 90), Quaternion.identity));
       Deck[i].transform.SetParent(this.transform);
-      Deck[i].AddComponent<Card>();
-      Deck[i].GetComponent<Card>().SetValues(this.transform.parent.GetComponent<GameMaster>().sampleCard); // TODO: Set up prebuilt decks
+      Deck[i].AddComponent<Play_Card>();
+      Deck[i].GetComponent<Play_Card>().SetValues(this.transform.parent.GetComponent<GameMaster>().sampleCard); // TODO: Set up prebuilt decks
     }
   }
 

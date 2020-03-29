@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 487589613}
+  - component: {fileID: 487589614}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -153,9 +154,33 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000020548701}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: -0.00012207}
+  m_SizeDelta: {x: 0, y: 1307.8}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &487589614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487589612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 250, y: 350}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &579326034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1515,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 604280133}
   m_HandleRect: {fileID: 604280132}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1790,6 +1815,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2529185552639690375, guid: e5ce973719611cf469db42a8f36f3cd8,
     type: 3}
+  Position: {x: -1120, y: 175, z: 0}
+  temp: {x: 0, y: 5, z: 0}
+  content: {fileID: 487589612}
 --- !u!1 &2115981036
 GameObject:
   m_ObjectHideFlags: 0
