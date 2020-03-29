@@ -7,6 +7,7 @@ using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Model;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 public class DeckBuilderStart : MonoBehaviour
 {
@@ -44,11 +45,7 @@ public class DeckBuilderStart : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     public IEnumerator GetSprite(string url, string CardName)
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);

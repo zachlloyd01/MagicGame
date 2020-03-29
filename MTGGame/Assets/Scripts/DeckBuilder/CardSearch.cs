@@ -19,6 +19,21 @@ public class CardSearch : MonoBehaviour
 
     private CardService service = new CardService();
 
+    bool allowEnter;
+    void Update()
+    {
+
+        if (allowEnter && (searchBar.text.Length > 0) && (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)))
+        {
+            Search();
+            allowEnter = false;
+        }
+        else 
+        { 
+            allowEnter = searchBar.isFocused; 
+        }
+    }
+
 
     public void Search()
     {
