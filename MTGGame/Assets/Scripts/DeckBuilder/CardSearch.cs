@@ -15,6 +15,8 @@ public class CardSearch : MonoBehaviour
     public GameObject cardPrefab;
     public GameObject content;
 
+    private GameObject tempObject;
+
     private CardService service = new CardService();
 
 
@@ -24,12 +26,12 @@ public class CardSearch : MonoBehaviour
 
         var result = service.Where(x => x.Name, query).All();
         var value = result.Value;
-        destroyPrevQuery();
         newQuery(value);
     }
 
     private void newQuery(List<Card> value)
     {
+        destroyPrevQuery();
         for (int i = 0; i < value.Count; i++)
         {
             // Debug.Log(value[i].Name);
@@ -52,7 +54,10 @@ public class CardSearch : MonoBehaviour
     {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("DeckbuilderCard"))
         {
-            Destroy(go);
+            if (go != null)
+            {
+                Destroy(go);
+            }
         }
     }
 
@@ -62,10 +67,11 @@ public class CardSearch : MonoBehaviour
         yield return www.SendWebRequest();
         Texture2D cardTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         cardTexture.filterMode = FilterMode.Point; // Removes pixel averaging
-        cardPrefab = Instantiate(cardPrefab); //, spawnLocation, Quaternion.identity);
-        cardPrefab.transform.SetParent(content.transform, false);
-        cardPrefab.name = CardName;
-        cardPrefab.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
+        tempObject = Instantiate(cardPrefab); //, spawnLocation, Quaternion.identity);
+
+        tempObject.transform.SetParent(content.transform, false);
+        tempObject.name = CardName;
+        tempObject.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
         // Debug.Log(image.texture.filterMode);
     }
 }

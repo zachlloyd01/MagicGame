@@ -15,6 +15,8 @@ public class DeckBuilderStart : MonoBehaviour
     public Vector3 Position = new Vector3(-922f, 1669f, 0);
     public Vector3 temp = new Vector3(5f, 0, 0);
 
+    private GameObject tempObject;
+
     public GameObject content;
     // Start is called before the first frame update
     void Start()
@@ -53,10 +55,11 @@ public class DeckBuilderStart : MonoBehaviour
         yield return www.SendWebRequest();
         Texture2D cardTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         cardTexture.filterMode = FilterMode.Point; // Removes pixel averaging
-        cardPrefab = Instantiate(cardPrefab); //, spawnLocation, Quaternion.identity);
-        cardPrefab.transform.SetParent(content.transform, false);
-        cardPrefab.name = CardName;
-        cardPrefab.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
+        tempObject = Instantiate(cardPrefab); //, spawnLocation, Quaternion.identity);
+        
+        tempObject.transform.SetParent(content.transform, false);
+        tempObject.name = CardName;
+        tempObject.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
         // Debug.Log(image.texture.filterMode);
     }
 }
