@@ -66,7 +66,7 @@ public class SaveToList : MonoBehaviour
             else
             {
                 DeckClass deck = new DeckClass();
-                deck.names = new List<string>();
+                deck.ids = new List<string>();
                 for (int i = 0; i < int.Parse(quantity.text); i++)
                 {
                     deck.ids.Add(ID);
