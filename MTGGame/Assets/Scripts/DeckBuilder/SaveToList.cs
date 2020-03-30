@@ -11,6 +11,7 @@ public class SaveToList : MonoBehaviour
 
     public TMP_InputField quantity;
     public string cardName;
+    public string id;
 
     public GameObject newPanel;
 
@@ -30,7 +31,7 @@ public class SaveToList : MonoBehaviour
     public void save()
     {
         int number = int.Parse(quantity.text);
-        appendList(cardName, number);
+        appendList(id, number);
     }
 
     public void openPanel()
@@ -39,7 +40,7 @@ public class SaveToList : MonoBehaviour
         newPanel.SetActive(true);
     }
 
-    private void appendList(string Name, int number)
+    private void appendList(string ID, int number)
     {
         string file = ListChooser.workingFile;
 
@@ -56,7 +57,7 @@ public class SaveToList : MonoBehaviour
                 DeckClass deck = JsonConvert.DeserializeObject<DeckClass>(json);
                 for (int i = 0; i < int.Parse(quantity.text); i++)
                 {
-                    deck.names.Add(Name);
+                    deck.ids.Add(ID);
                 }
                 string newData = JsonConvert.SerializeObject(deck);
                 File.WriteAllText(file, newData);
@@ -68,7 +69,7 @@ public class SaveToList : MonoBehaviour
                 deck.names = new List<string>();
                 for (int i = 0; i < int.Parse(quantity.text); i++)
                 {
-                    deck.names.Add(Name);
+                    deck.ids.Add(ID);
                 }
                 string newData  = JsonConvert.SerializeObject(deck);
                 using (StreamWriter sw = File.CreateText(file))
@@ -83,10 +84,10 @@ public class SaveToList : MonoBehaviour
         else
         {
             DeckClass deck = new DeckClass();
-            deck.names = new List<string>();
+            deck.ids = new List<string>();
             for (int i = 0; i < int.Parse(quantity.text); i++)
             {
-                deck.names.Add(Name);
+                deck.ids.Add(ID);
             }
             string newData = JsonConvert.SerializeObject(deck);
             using (StreamWriter sw = File.CreateText(file))

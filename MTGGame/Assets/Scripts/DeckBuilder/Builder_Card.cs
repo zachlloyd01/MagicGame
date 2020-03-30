@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class Builder_Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
+    public string id;
+
     public void OnPointerEnter(PointerEventData eventData) //display info panel
     {
         
@@ -37,7 +39,7 @@ public class Builder_Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerClick(PointerEventData eventData)
     {
         GameObject.Find("Manager").GetComponent<SaveToList>().cardName = gameObject.name;
+        GameObject.Find("Manager").GetComponent<SaveToList>().id = id;
         GameObject.Find("Manager").GetComponent<SaveToList>().openPanel();
-        Debug.Log("open");
     }
 }

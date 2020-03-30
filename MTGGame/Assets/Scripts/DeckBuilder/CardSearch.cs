@@ -54,7 +54,8 @@ public class CardSearch : MonoBehaviour
             {
                 string url = value[i].ImageUrl.ToString();
                 string CardName = value[i].Name;
-                StartCoroutine(GetSprite(url, CardName));
+                string id = value[i].Id;
+                StartCoroutine(GetSprite(url, CardName, id));
 
             }
             catch
@@ -76,7 +77,7 @@ public class CardSearch : MonoBehaviour
         }
     }
 
-    private IEnumerator GetSprite(string url, string CardName)
+    private IEnumerator GetSprite(string url, string CardName, string id)
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
@@ -85,6 +86,7 @@ public class CardSearch : MonoBehaviour
         tempObject = Instantiate(cardPrefab); //, spawnLocation, Quaternion.identity);
 
         tempObject.transform.SetParent(content.transform, false);
+        tempObject.GetComponent<Builder_Card>().id = id;
         tempObject.name = CardName;
         tempObject.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
         // Debug.Log(image.texture.filterMode);

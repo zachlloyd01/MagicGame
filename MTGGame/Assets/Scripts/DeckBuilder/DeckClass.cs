@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class DeckClass
 {
-    [JsonProperty("names")]
-    public List<string> names { get; set; }
+    [JsonProperty("ids")]
+    public List<string> ids { get; set; }
 }
 
