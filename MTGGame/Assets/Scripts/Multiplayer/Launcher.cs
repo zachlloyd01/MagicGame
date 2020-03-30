@@ -9,15 +9,27 @@ public class Launcher : MonoBehaviourPunCallbacks
 {
     #region private serializable fields
 
-    [Tooltip("Max Players per game. If met, new players will be dumped into a new room.")]
+    [Tooltip("UI Panel for username creation, and connecting")]
     [SerializeField]
-    private byte maxPlayersPerRoom = 4;
+    private GameObject controlPanel;
+
+    [Tooltip("UI Label for connection information")]
+    [SerializeField]
+    private GameObject progressLabel;
 
     #endregion
 
     #region Private fields
 
     private string gameVersion = "0.1"; //Game Version... duh
+    private bool isConnecting; //keep track of current progress
+
+    #endregion
+
+    #region public fields
+
+    [Tooltip("Max Players per game. If met, new players will be dumped into a new room.")]
+    public byte maxPlayersPerRoom = 4;
 
     #endregion
 
@@ -30,7 +42,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
+        progressLabel.SetActive(false);
+        controlPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -49,6 +62,9 @@ public class Launcher : MonoBehaviourPunCallbacks
      
     public void Connect()
     {
+        isConnecting = PhotonNetwork.ConnectUsingSettings();
+        progressLabel.SetActive(true);
+        controlPanel.SetActive(false);
         if(PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom(); //If this fails, it will invoke the OnJoinRandomFailed() method
@@ -68,11 +84,17 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("ConnectedToMaster()");
-        PhotonNetwork.JoinRandomRoom(); //Join room once reconnected to internet; if fails will invoke OnJinRandomRoomFailed()
+        if (isConnecting)
+        {
+            PhotonNetwork.JoinRandomRoom(); //Join room once reconnected to internet; if fails will invoke OnJinRandomRoomFailed()
+            isConnecting = false;
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+        progressLabel.SetActive(false);
+        controlPanel.SetActive(true);
         Debug.LogWarning($"OnDisconnected() was called with reason: {cause}");
     }
 
@@ -86,6 +108,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom(). Client in a room.");
+        if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
+        {
+            Debug.Log("Ready to Play");
+
+            PhotonNetwork.LoadLevel("Game");
+        }
     }
 
     #endregion

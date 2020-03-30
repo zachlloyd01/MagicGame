@@ -21,7 +21,7 @@ public class DataFromJson : MonoBehaviour
 
     private IEnumerator JsonGenerate() //Coroutine goodness
     {
-        string json; //WIll be set to the full json data for each card
+       /* string json; //WIll be set to the full json data for each card
         using (StreamReader sr = new StreamReader(AssetDatabase.GetAssetPath(allCards))) //Read the file of the full JSON file
         {
             json = sr.ReadToEnd(); //Read through the entire file, set json to the string that is generated
@@ -35,7 +35,7 @@ public class DataFromJson : MonoBehaviour
             CardData newCard = JsonConvert.DeserializeObject<CardData>(card.ToString()); //Deserialize the data into an instance of CardData
             string cardName = reg.Replace(newCard.name, string.Empty); //Use the Regex from earlier to replace all non-alphanumeric chars
             File.WriteAllText($@"Assets/Resources/JsonObjects/{cardName}.json", JsonConvert.SerializeObject(newCard)); //Write the data to a new JSON file, that has the cardname as its file name
-        }
+        }*/
         yield return null; //The coroutine just generates the JSON, does not need to return anything... maybe it should return true when it completes?
     }
 }
