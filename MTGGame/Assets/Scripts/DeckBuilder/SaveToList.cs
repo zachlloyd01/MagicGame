@@ -13,6 +13,8 @@ public class SaveToList : MonoBehaviour
     public string cardName;
 
     public GameObject newPanel;
+
+    public TMP_Text title;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class SaveToList : MonoBehaviour
 
     public void openPanel()
     {
+        title.text = cardName;
         newPanel.SetActive(true);
     }
 

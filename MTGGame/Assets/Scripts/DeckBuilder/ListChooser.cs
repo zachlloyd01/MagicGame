@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class ListChooser : MonoBehaviour
 {
@@ -19,9 +20,22 @@ public class ListChooser : MonoBehaviour
     public GameObject deckBuilder;
 
     public GameObject chooseList;
+
+    public TMP_Dropdown list;
+
+    public GameObject EditListPanel;
+
     private void Start()
     {
+        list.ClearOptions();
         docs += @"\decks\";
+        DirectoryInfo d = new DirectoryInfo(docs);
+        List<string> options = new List<string>();
+        foreach (var file in d.GetFiles("*.json"))
+        {
+            options.Add((file.Name.Split('.')[0]));
+        }
+        list.AddOptions(options);
         ButtonUI.SetActive(true);
         newListPanel.SetActive(false);   
     }
@@ -35,7 +49,8 @@ public class ListChooser : MonoBehaviour
 
     public void editList()
     {
-
+        ButtonUI.SetActive(false);
+        EditListPanel.SetActive(true);
     }
 
     public void createNewList()
@@ -48,6 +63,13 @@ public class ListChooser : MonoBehaviour
     {
         workingFile = docs + newName.text + ".json";
         chooseList.SetActive(false);
+        deckBuilder.SetActive(true);
+    }
+
+    public void editListSubmit()
+    {
+        workingFile = docs + list.captionText.text + ".json";
+        EditListPanel.SetActive(false);
         deckBuilder.SetActive(true);
     }
 }
