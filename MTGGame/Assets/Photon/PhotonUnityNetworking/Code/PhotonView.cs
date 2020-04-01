@@ -235,7 +235,7 @@ namespace Photon.Pun
         /// True in case the owner matches the local Player.
         /// True if this is a scene photonview on the Master client.
         /// </remarks>
-        public bool IsMine
+        public bool isMine
         {
             get
             {

@@ -60,7 +60,7 @@ namespace Photon.Pun.UtilityScripts
 
         public void Update()
         {
-            if (!photonView.IsMine)
+            if (!photonView.isMine)
             {
                 //Update remote player (smooth this, this looks good, at the cost of some accuracy)
                 transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * this.SmoothingDelay);

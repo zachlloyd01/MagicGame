@@ -70,7 +70,7 @@ namespace Photon.Pun
 
         void Update()
         {
-            if (this.m_PhotonView == null || this.m_PhotonView.IsMine == true || PhotonNetwork.IsConnectedAndReady == false)
+            if (this.m_PhotonView == null || this.m_PhotonView.isMine == true || PhotonNetwork.IsConnectedAndReady == false)
             {
                 return;
             }

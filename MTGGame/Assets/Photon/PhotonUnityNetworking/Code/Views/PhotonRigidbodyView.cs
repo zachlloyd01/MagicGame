@@ -47,7 +47,7 @@ namespace Photon.Pun
 
         public void FixedUpdate()
         {
-            if (!this.m_PhotonView.IsMine)
+            if (!this.m_PhotonView.isMine)
             {
                 this.m_Body.position = Vector3.MoveTowards(this.m_Body.position, this.m_NetworkPosition, this.m_Distance * (1.0f / PhotonNetwork.SerializationRate));
                 this.m_Body.rotation = Quaternion.RotateTowards(this.m_Body.rotation, this.m_NetworkRotation, this.m_Angle * (1.0f / PhotonNetwork.SerializationRate));

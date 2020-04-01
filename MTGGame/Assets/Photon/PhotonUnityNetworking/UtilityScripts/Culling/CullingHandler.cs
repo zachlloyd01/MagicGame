@@ -47,7 +47,7 @@ namespace Photon.Pun.UtilityScripts
             {
                 this.pView = GetComponent<PhotonView>();
 
-                if (!this.pView.IsMine)
+                if (!this.pView.isMine)
                 {
                     return;
                 }
@@ -69,7 +69,7 @@ namespace Photon.Pun.UtilityScripts
         /// </summary>
         private void Start()
         {
-            if (!this.pView.IsMine)
+            if (!this.pView.isMine)
             {
                 return;
             }
@@ -95,7 +95,7 @@ namespace Photon.Pun.UtilityScripts
         /// </summary>
         private void Update()
         {
-            if (!this.pView.IsMine)
+            if (!this.pView.isMine)
             {
                 return;
             }
@@ -120,7 +120,7 @@ namespace Photon.Pun.UtilityScripts
         /// </summary>
         private void OnGUI()
         {
-            if (!this.pView.IsMine)
+            if (!this.pView.isMine)
             {
                 return;
             }

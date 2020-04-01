@@ -130,7 +130,7 @@ namespace Photon.Pun
 
         private void Update()
         {
-            if (this.m_Animator.applyRootMotion && this.m_PhotonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            if (this.m_Animator.applyRootMotion && this.m_PhotonView.isMine == false && PhotonNetwork.IsConnected == true)
             {
                 this.m_Animator.applyRootMotion = false;
             }
@@ -141,7 +141,7 @@ namespace Photon.Pun
                 return;
             }
 
-            if (this.m_PhotonView.IsMine == true)
+            if (this.m_PhotonView.isMine == true)
             {
                 this.SerializeDataContinuously();
 

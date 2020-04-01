@@ -100,7 +100,7 @@ namespace Photon.Pun
             if (EditorApplication.isPlaying)
             {
                 string masterClientHint = PhotonNetwork.IsMasterClient ? "(master)" : "";
-                EditorGUILayout.Toggle("Controlled locally: " + masterClientHint, this.m_Target.IsMine);
+                EditorGUILayout.Toggle("Controlled locally: " + masterClientHint, this.m_Target.isMine);
             }
 
             // ViewSynchronization (reliability)
