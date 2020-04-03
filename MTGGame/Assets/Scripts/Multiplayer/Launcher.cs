@@ -4,6 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using TMPro;
+using System.IO;
+using Newtonsoft.Json;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -17,12 +20,18 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject progressLabel;
 
+    [Tooltip("Dropdown of Deck Files in the decks folder in Documents")]
+    [SerializeField]
+    private TMP_Dropdown list;
+
     #endregion
 
     #region Private fields
 
     private string gameVersion = "0.1"; //Game Version... duh
     private bool isConnecting; //keep track of current progress
+    private string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+    private GameObject deckHolder;
 
     #endregion
 
@@ -42,6 +51,15 @@ public class Launcher : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        deckHolder = new GameObject();
+        docs += @"\decks\";
+        DirectoryInfo d = new DirectoryInfo(docs);
+        List<string> options = new List<string>();
+        foreach (var file in d.GetFiles("*.json"))
+        {
+            options.Add((file.Name.Split('.')[0]));
+        }
+        list.AddOptions(options);
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
     }
@@ -62,6 +80,18 @@ public class Launcher : MonoBehaviourPunCallbacks
      
     public void Connect()
     {
+/*        deckHolder = Instantiate(deckHolder);
+        deckListHolder listHolder = deckHolder.AddComponent<deckListHolder>();
+        
+        string file = docs + list.captionText.text + ".json";
+        string json;
+        using (StreamReader sr = new StreamReader(file)) 
+        {
+            json = sr.ReadToEnd();
+            sr.Close();
+        }*/
+        // DeckClass deckClass = JsonConvert.DeserializeObject<DeckClass>(json);
+        // listHolder.deckClass = deckClass;
         isConnecting = PhotonNetwork.ConnectUsingSettings();
         progressLabel.SetActive(true);
         controlPanel.SetActive(false);
@@ -111,7 +141,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
         {
             Debug.Log("Ready to Play");
-
+            // DontDestroyOnLoad(deckHolder);
             PhotonNetwork.LoadLevel("Game");
         }
     }

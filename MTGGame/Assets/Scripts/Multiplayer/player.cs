@@ -16,8 +16,9 @@ public class player : MonoBehaviour
     public DeckClass deckClass;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        deckClass = GameObject.Find("").GetComponent<deckListHolder>().deckClass;
         deckData = deckClass.ids;
         deckData.Shuffle();
         deck = Instantiate(deck);
