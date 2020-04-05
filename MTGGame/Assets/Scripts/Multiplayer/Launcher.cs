@@ -28,6 +28,15 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     #endregion
 
+    #region Public Fields
+
+    public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+
+    public TMP_Dropdown list;
+
+    private GameObject deckList;
+
+    #endregion
 
     #region Private Fields
 
@@ -60,8 +69,19 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
+        list.ClearOptions();
+        docs += @"\decks\";
+        DirectoryInfo d = new DirectoryInfo(docs);
+        List<string> options = new List<string>();
+        foreach (var file in d.GetFiles("*.json"))
+        {
+            options.Add((file.Name.Split('.')[0]));
+        }
+        list.AddOptions(options);
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        deckList = new GameObject();
+        deckList.AddComponent<deckListHolder>();
         // Connect();
     }
 
@@ -77,6 +97,24 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// - If already connected, we attempt joining a random room
     /// - if not yet connected, Connect this application instance to Photon Cloud Network
     /// </summary>
+    /// 
+
+
+    public void buttonConnect()
+    {
+        string json;
+        using(StreamReader sr = new StreamReader(docs + list.captionText.text + ".json"))
+        {
+            json = sr.ReadToEnd();
+            sr.Close();
+        }
+        DeckClass deck = JsonConvert.DeserializeObject<DeckClass>(json);
+        deckList.GetComponent<deckListHolder>().deckClass = deck;
+        DontDestroyOnLoad(deckList);
+        Connect();
+    }
+
+
     public void Connect()
     {
         progressLabel.SetActive(true);

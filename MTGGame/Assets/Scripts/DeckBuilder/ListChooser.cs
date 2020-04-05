@@ -9,7 +9,7 @@ public class ListChooser : MonoBehaviour
     public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 
 
-    public static string workingFile = "";
+    public string workingFile = "";
 
     public GameObject newListPanel;
 

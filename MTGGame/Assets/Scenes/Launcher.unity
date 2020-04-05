@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 1523478847}
   - component: {fileID: 1523478846}
   m_Layer: 5
-  m_Name: Deck
+  m_Name: DeckChoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2822,6 +2822,8 @@ MonoBehaviour:
   maxPlayersPerRoom: 1
   controlPanel: {fileID: 1238701126}
   progressLabel: {fileID: 1174476920}
+  docs: C:\Users\Zach\Documents
+  list: {fileID: 1204358679}
 --- !u!1 &2114312032
 GameObject:
   m_ObjectHideFlags: 0
