@@ -130,7 +130,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-        if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
         {
             PhotonNetwork.LoadLevel("Game");
 
