@@ -10,141 +10,133 @@ using Newtonsoft.Json;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    #region private serializable fields
+    #region Private Serializable Fields
 
-    [Tooltip("UI Panel for username creation, and connecting")]
+    /// <summary>
+    /// The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
+    /// </summary>
+    [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
+    [SerializeField]
+    private byte maxPlayersPerRoom = 4;
+
+    [Tooltip("The Ui Panel to let the user enter name, connect and play")]
     [SerializeField]
     private GameObject controlPanel;
-
-    [Tooltip("UI Label for connection information")]
+    [Tooltip("The UI Label to inform the user that the connection is in progress")]
     [SerializeField]
     private GameObject progressLabel;
 
-    [Tooltip("Dropdown of Deck Files in the decks folder in Documents")]
-    [SerializeField]
-    private TMP_Dropdown list;
+    #endregion
+
+
+    #region Private Fields
+
+
+    /// <summary>
+    /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
+    /// </summary>
+    string gameVersion = "1";
+    bool isConnecting;
 
     #endregion
 
-    #region Private fields
 
-    private string gameVersion = "0.1"; //Game Version... duh
-    private bool isConnecting; //keep track of current progress
-    private string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-    private GameObject deckHolder;
+    #region MonoBehaviour CallBacks
 
-    #endregion
 
-    #region public fields
-
-    [Tooltip("Max Players per game. If met, new players will be dumped into a new room.")]
-    public byte maxPlayersPerRoom = 4;
-
-    #endregion
-
-    #region default functions
-
-    private void Awake()
+    /// <summary>
+    /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
+    /// </summary>
+    void Awake()
     {
+        // #Critical
+        // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
     }
-    // Start is called before the first frame update
+
+
+    /// <summary>
+    /// MonoBehaviour method called on GameObject by Unity during initialization phase.
+    /// </summary>
     void Start()
     {
-        deckHolder = new GameObject();
-        docs += @"\decks\";
-        DirectoryInfo d = new DirectoryInfo(docs);
-        List<string> options = new List<string>();
-        foreach (var file in d.GetFiles("*.json"))
-        {
-            options.Add((file.Name.Split('.')[0]));
-        }
-        list.AddOptions(options);
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        // Connect();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     #endregion
+
 
     #region Public Methods
 
-    /* Start the Connection Process
-     * If already connected, join a random room *
-     * If not connected, connect instance to Photon Cloud */
-     
+
+    /// <summary>
+    /// Start the connection process.
+    /// - If already connected, we attempt joining a random room
+    /// - if not yet connected, Connect this application instance to Photon Cloud Network
+    /// </summary>
     public void Connect()
     {
-/*        deckHolder = Instantiate(deckHolder);
-        deckListHolder listHolder = deckHolder.AddComponent<deckListHolder>();
-        
-        string file = docs + list.captionText.text + ".json";
-        string json;
-        using (StreamReader sr = new StreamReader(file)) 
-        {
-            json = sr.ReadToEnd();
-            sr.Close();
-        }*/
-        // DeckClass deckClass = JsonConvert.DeserializeObject<DeckClass>(json);
-        // listHolder.deckClass = deckClass;
-        isConnecting = PhotonNetwork.ConnectUsingSettings();
         progressLabel.SetActive(true);
         controlPanel.SetActive(false);
-        if(PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.JoinRandomRoom(); //If this fails, it will invoke the OnJoinRandomFailed() method
+            PhotonNetwork.JoinRandomRoom();
         }
-
         else
         {
-            PhotonNetwork.ConnectUsingSettings(); //Connect to Photon Network
+            isConnecting = PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameVersion;
         }
     }
 
+
     #endregion
 
-    #region PUN Callbacks
+    #region MonoBehaviourPunCallbacks Callbacks
+
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("ConnectedToMaster()");
-        if (isConnecting)
+        Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
+
+        // #Critical: The first we try to do is to join a potential existing room. If there is, good, else, we'll be called back with OnJoinRandomFailed()
+        if(isConnecting)
         {
-            PhotonNetwork.JoinRandomRoom(); //Join room once reconnected to internet; if fails will invoke OnJinRandomRoomFailed()
+            PhotonNetwork.JoinRandomRoom();
             isConnecting = false;
         }
+        
     }
+
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
-        Debug.LogWarning($"OnDisconnected() was called with reason: {cause}");
+        Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("OnJoinRandomFailed(). No random room available. One will be made.");
+        Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
 
+        // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("OnJoinedRoom(). Client in a room.");
-        if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
+        Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            Debug.Log("Ready to Play");
-            // DontDestroyOnLoad(deckHolder);
             PhotonNetwork.LoadLevel("Game");
+
         }
     }
+
 
     #endregion
 }
