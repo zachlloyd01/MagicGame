@@ -5,6 +5,7 @@ using TMPro;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using MtgApiManager.Lib.Service;
 
 public class SaveToList : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class SaveToList : MonoBehaviour
     public GameObject newPanel;
 
     public TMP_Text title;
+
+    CardService service = new CardService();
+
     // Start is called before the first frame update
     void Start()
     {
