@@ -317,4 +317,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: {fileID: 0}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 2345328763062151311, guid: e9555f17f7d34834caafe557e55fa4a6,
+    type: 3}

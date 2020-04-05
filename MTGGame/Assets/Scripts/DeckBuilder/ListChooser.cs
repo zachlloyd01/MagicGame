@@ -6,8 +6,8 @@ using System.IO;
 
 public class ListChooser : MonoBehaviour
 {
+    [System.NonSerialized]
     public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-
 
     public string workingFile = "";
 

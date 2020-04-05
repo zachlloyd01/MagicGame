@@ -30,6 +30,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     #region Public Fields
 
+    [System.NonSerialized]
     public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 
     public TMP_Dropdown list;

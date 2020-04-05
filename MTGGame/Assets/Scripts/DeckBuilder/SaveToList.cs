@@ -20,8 +20,6 @@ public class SaveToList : MonoBehaviour
 
     CardService service = new CardService();
 
-    public GameObject manager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +46,7 @@ public class SaveToList : MonoBehaviour
 
     private void appendList(string ID, int number)
     {
-        string file = manager.GetComponent<ListChooser>().workingFile;
+        string file = GetComponent<ListChooser>().workingFile;
 
         if(new FileInfo(file).Exists)
         {
