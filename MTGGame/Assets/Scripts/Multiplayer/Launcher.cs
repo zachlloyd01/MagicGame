@@ -24,7 +24,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     private GameObject controlPanel;
     [Tooltip("The UI Label to inform the user that the connection is in progress")]
     [SerializeField]
-    private GameObject progressLabel;
+    private TMP_Text progressLabel;
 
     #endregion
 
@@ -79,7 +79,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             options.Add((file.Name.Split('.')[0]));
         }
         list.AddOptions(options);
-        progressLabel.SetActive(false);
+        progressLabel.SetText(""); // SetActive(false)
         controlPanel.SetActive(true);
         deckList = new GameObject();
         deckList.AddComponent<deckListHolder>();
@@ -98,7 +98,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// - If already connected, we attempt joining a random room
     /// - if not yet connected, Connect this application instance to Photon Cloud Network
     /// </summary>
-    /// 
+    ///
 
 
     public void buttonConnect()
@@ -118,8 +118,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
-        progressLabel.SetActive(true);
         controlPanel.SetActive(false);
+        progressLabel.SetText("Connecting..."); // SetActive(true)
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();
@@ -131,6 +131,14 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public string getStatus () { // returns status of lobby + info
+      string status = PhotonNetwork.CurrentRoom.PlayerCount + "/" + maxPlayersPerRoom + "\n";
+      foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList) {
+        status += player.NickName + "\n";
+      }
+      return status;
+    }
 
     #endregion
 
@@ -147,13 +155,13 @@ public class Launcher : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinRandomRoom();
             isConnecting = false;
         }
-        
+
     }
 
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        progressLabel.SetActive(false);
+        progressLabel.SetText(""); // SetActive(false)
         controlPanel.SetActive(true);
         Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
     }
@@ -169,6 +177,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        progressLabel.SetText(getStatus());
         if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
         {
             PhotonNetwork.LoadLevel("Game");
