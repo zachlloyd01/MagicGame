@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 public class Launcher : MonoBehaviourPunCallbacks
 {
     #region Private Serializable Fields
-
     /// <summary>
     /// The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
     /// </summary>
@@ -59,9 +58,12 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Awake()
     {
+        deckList = new GameObject();
+        deckList.name = "deckList";
         // #Critical
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
+        DontDestroyOnLoad(deckList);
     }
 
 
@@ -81,9 +83,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         list.AddOptions(options);
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
-        deckList = new GameObject();
+        
         deckList.AddComponent<deckListHolder>();
         // Connect();
+        DontDestroyOnLoad(deckList);
     }
 
 

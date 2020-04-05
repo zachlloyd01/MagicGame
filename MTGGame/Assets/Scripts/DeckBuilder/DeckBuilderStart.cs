@@ -42,7 +42,6 @@ public class DeckBuilderStart : MonoBehaviour
                     string CardName = value[i].Name;
                     string id = value[i].Id;
                     StartCoroutine(GetSprite(url, CardName, id));
-                    
                 }
                 catch
                 {

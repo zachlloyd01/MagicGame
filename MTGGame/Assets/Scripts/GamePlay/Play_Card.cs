@@ -24,7 +24,8 @@ public class Play_Card : MonoBehaviour, IPointerEnterHandler
     void OnEnable()
     {
         photonView = GetComponent<PhotonView>();
-        var result = service.Where(x => x.Name, this.name).All();
+        var result = service.Where(x => x.Number, id).All();
+
         if(result.IsSuccess)
         {
             url = result.Value[0].ImageUrl.ToString();
