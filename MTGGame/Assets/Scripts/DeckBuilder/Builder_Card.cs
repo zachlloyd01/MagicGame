@@ -38,6 +38,7 @@ public class Builder_Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log(id);
         GameObject.Find("Manager").GetComponent<SaveToList>().cardName = gameObject.name;
         GameObject.Find("Manager").GetComponent<SaveToList>().id = id;
         GameObject.Find("Manager").GetComponent<SaveToList>().openPanel();

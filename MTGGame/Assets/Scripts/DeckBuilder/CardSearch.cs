@@ -54,7 +54,7 @@ public class CardSearch : MonoBehaviour
             {
                 string url = value[i].ImageUrl.ToString();
                 string CardName = value[i].Name;
-                string id = value[i].Id;
+                string id = value[i].Id;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                 StartCoroutine(GetSprite(url, CardName, id));
 
             }
