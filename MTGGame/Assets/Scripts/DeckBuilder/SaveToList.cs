@@ -35,6 +35,7 @@ public class SaveToList : MonoBehaviour
     public void save()
     {
         int number = int.Parse(quantity.text);
+ 
         appendList(id, number);
     }
 

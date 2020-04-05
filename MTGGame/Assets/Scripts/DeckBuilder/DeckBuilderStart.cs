@@ -40,8 +40,8 @@ public class DeckBuilderStart : MonoBehaviour
                 {
                     string url = value[i].ImageUrl.ToString();
                     string CardName = value[i].Name;
-                    StartCoroutine(GetSprite(url, CardName));
-                    
+                    string id = value[i].Id;
+                    StartCoroutine(GetSprite(url, CardName, id));
                 }
                 catch
                 {
@@ -54,7 +54,7 @@ public class DeckBuilderStart : MonoBehaviour
     }
 
 
-    public IEnumerator GetSprite(string url, string CardName)
+    public IEnumerator GetSprite(string url, string CardName, string id)
     {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
@@ -64,6 +64,7 @@ public class DeckBuilderStart : MonoBehaviour
         
         tempObject.transform.SetParent(content.transform, false);
         tempObject.name = CardName;
+        tempObject.GetComponent<Builder_Card>().id = id;
         tempObject.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
         // Debug.Log(image.texture.filterMode);
     }

@@ -18,12 +18,12 @@ public class game_player : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-/*        deckClass = GameObject.Find("").GetComponent<deckListHolder>().deckClass;
+        deckClass = GameObject.Find("deckList").GetComponent<deckListHolder>().deckClass;
         deckData = deckClass.ids;
         deckData.Shuffle();
         deck = Instantiate(deck);
-        deck.transform.parent = GameObject.Find("Canvas").transform;
-        deck.GetComponent<deck>().cards = deckData;*/
+        deck.transform.parent = GameObject.Find("Game").transform;
+        deck.GetComponent<deck>().cards = deckData;
     }
 
     // Update is called once per frame
