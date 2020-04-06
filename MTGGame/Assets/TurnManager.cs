@@ -15,24 +15,19 @@ public class TurnManager : MonoBehaviourPunCallbacks
     public override void OnEnable()
     {
         List<Photon.Realtime.Player> turnOrder = new List<Photon.Realtime.Player>();
-        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        if (PhotonNetwork.IsMasterClient)
         {
-            orderTurn.Add(player.NickName);
-        }
-        if(PhotonNetwork.IsMasterClient)
-        {
+            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+            {
+                orderTurn.Add(player.NickName);
+            }
             orderTurn.Shuffle();
-        }
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            orderTurn = new List<string>();
-            orderTurn.AddRange(orderTurn.ToArray());
         }
         foreach (string x in orderTurn)
         {
-            values += x;
+            values += x + "\n";
         }
-        
+
         currentPlayer = 0;
     }
     // Start is called before the first frame update

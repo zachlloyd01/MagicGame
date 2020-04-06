@@ -23,13 +23,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        if(PhotonNetwork.IsMasterClient)
         {
+            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+            {
 
-            GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
-            newPlayer.name = player.NickName;
+                GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
+                newPlayer.name = player.NickName;
+            }
+            PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
         }
-        PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
     }
 
     #region Photon Callbacks
