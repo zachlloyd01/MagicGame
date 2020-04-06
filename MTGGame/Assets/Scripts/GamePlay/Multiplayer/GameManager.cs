@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        PhotonNetwork.Instantiate(this.name, Vector3.zero, Quaternion.identity);
         PhotonNetwork.AutomaticallySyncScene = true;
 
         this.gameObject.AddComponent<PhotonView>();
