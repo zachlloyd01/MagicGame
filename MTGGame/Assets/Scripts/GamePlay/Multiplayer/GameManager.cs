@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject pausePanel;
+    public List<GameObject> Players;
 
     private void Start()
     {
@@ -17,7 +18,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         List<Photon.Realtime.Player> turnOrder = new List<Photon.Realtime.Player>();
         foreach(Photon.Realtime.Player player in PhotonNetwork.PlayerList)
         {
-            turnOrder.Add(player);
+            // turnOrder.Add(player);
+            Players.Add(new GameObject());
+            Players[Players.Count - 1].AddComponent<game_player>();
+            Players[Players.Count - 1].name = player.NickName;
         }
     }
 
@@ -75,21 +79,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     #region Private Methods
 
-    private void LoadArena() 
-    { 
+    private void LoadArena()
+    {
         if(!PhotonNetwork.IsMasterClient)
         {
             Debug.LogError("Photon Network: Trying to load level, but is not Master Client");
         }
         Debug.Log($"PhotonNetwork: Loading Level, with {PhotonNetwork.CurrentRoom.PlayerCount}");
         PhotonNetwork.LoadLevel("Game");
-        
-        
+
+
     }
 
     #endregion
 
     #region Game Management
-   
+
     #endregion
 }
