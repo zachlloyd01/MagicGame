@@ -48,7 +48,6 @@ MonoBehaviour:
   Players: []
   orderTurns: []
   centerText: {fileID: 0}
-  manager: {fileID: 0}
 --- !u!114 &-5007142535555779842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +65,8 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

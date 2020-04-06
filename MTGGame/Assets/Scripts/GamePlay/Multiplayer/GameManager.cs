@@ -16,13 +16,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<string> orderTurns;
     public TMP_Text centerText;
 
-    public GameObject manager;
-
     int currentPlayer;
 
     private void Start()
     {
-        PhotonNetwork.Instantiate(manager.name, Vector3.zero, Quaternion.identity);
         PhotonNetwork.AutomaticallySyncScene = true;
 
         this.gameObject.AddComponent<PhotonView>();
