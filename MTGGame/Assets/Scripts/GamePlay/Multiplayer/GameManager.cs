@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             pausePanel.SetActive(false);
         }
 
-          centerText.SetText(GameObject.Find("TurnManager").GetComponent<TurnManager>().values);
+          centerText.SetText(GameObject.Find("TurnManager(Clone)").GetComponent<TurnManager>().values);
     }
     
     #endregion
