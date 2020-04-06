@@ -19,11 +19,12 @@ public class TurnManager : MonoBehaviourPunCallbacks
         {
             orderTurn.Add(player.NickName);
         }
+        orderTurn.Shuffle();
         foreach (string x in orderTurn)
         {
             values += x;
         }
-        orderTurn.Shuffle();
+        
         currentPlayer = 0;
     }
     // Start is called before the first frame update
