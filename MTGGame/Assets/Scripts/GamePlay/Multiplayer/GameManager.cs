@@ -12,14 +12,24 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject pausePanel;
+    public List<GameObject> Players;
+    public List<string> orderTurns;
     public TMP_Text centerText;
 
     public GameObject turnManager;
-    
+    public GameObject NewPlayer;
+    int currentPlayer;
 
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+
+            GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
+            newPlayer.name = player.NickName;
+        }
+        PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
     }
 
     #region Photon Callbacks
@@ -46,11 +56,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OnEnable()
-    {
-        PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
-    }
-
     #endregion
 
     #region Default Functions
@@ -64,10 +69,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         else if(Input.GetKeyDown(KeyCode.Escape) && pausePanel.activeSelf.Equals(true)) {
             pausePanel.SetActive(false);
         }
-
           centerText.SetText(GameObject.Find("TurnManager(Clone)").GetComponent<TurnManager>().values);
     }
     
+
     #endregion
 
     #region Public Methods
@@ -94,4 +99,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-    }
+
+    #region Game Management
+
+    #endregion
+}
