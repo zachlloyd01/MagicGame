@@ -19,7 +19,10 @@ public class TurnManager : MonoBehaviourPunCallbacks
         {
             orderTurn.Add(player.NickName);
         }
-        orderTurn.Shuffle();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            orderTurn.Shuffle();
+        }
         foreach (string x in orderTurn)
         {
             values += x;
