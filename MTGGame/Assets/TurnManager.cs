@@ -23,6 +23,11 @@ public class TurnManager : MonoBehaviourPunCallbacks
         {
             orderTurn.Shuffle();
         }
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            orderTurn = new List<string>();
+            orderTurn.AddRange(orderTurn.ToArray());
+        }
         foreach (string x in orderTurn)
         {
             values += x;
