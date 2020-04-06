@@ -1774,7 +1774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174476922
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f798f56e8f6331459ea0c5c0a241011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayersPerRoom: 1
+  maxPlayersPerRoom: 3
   controlPanel: {fileID: 1238701126}
   progressLabel: {fileID: 1174476922}
   list: {fileID: 1204358679}
