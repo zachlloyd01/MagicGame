@@ -12,32 +12,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject pausePanel;
-    public List<GameObject> Players;
-    public List<string> orderTurns;
     public TMP_Text centerText;
 
-    int currentPlayer;
+    public GameObject turnManager;
+    
 
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-
-        this.gameObject.AddComponent<PhotonView>();
-        List<Photon.Realtime.Player> turnOrder = new List<Photon.Realtime.Player>();
-        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-        {
-            // turnOrder.Add(player);
-            Players.Add(new GameObject());
-            Players[Players.Count - 1].AddComponent<game_player>();
-            Players[Players.Count - 1].name = player.NickName;
-            orderTurns.Add(player.NickName);
-        }
-        if (PhotonNetwork.IsMasterClient) {
-            orderTurns.Shuffle();
-            // String.Join(",", orderTurns.ToArray()).ToString()
-            this.photonView.RPC("getOrder", RpcTarget.All, orderTurns.ToArray()); // Send to other players
-        }
-        currentPlayer = 0;
     }
 
     #region Photon Callbacks
@@ -64,6 +46,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void OnEnable()
+    {
+        PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
+    }
+
     #endregion
 
     #region Default Functions
@@ -77,15 +64,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         else if(Input.GetKeyDown(KeyCode.Escape) && pausePanel.activeSelf.Equals(true)) {
             pausePanel.SetActive(false);
         }
-        if (orderTurns.Count > 0) {
-          string values = "Order:\n";
-          foreach (string x in orderTurns) {
-              values += x + "\n";
-          }
-          centerText.SetText(values);
-        }
-    }
 
+          centerText.SetText(GameObject.Find("TurnManager").GetComponent<TurnManager>().values);
+    }
+    
     #endregion
 
     #region Public Methods
@@ -112,16 +94,4 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
-
-    [PunRPC]
-    public void getOrder (string[] order) {
-      if (!PhotonNetwork.IsMasterClient) {
-        orderTurns = new List<string>();
-        orderTurns.AddRange(order);
-      }
     }
-
-    #region Game Management
-
-    #endregion
-}
