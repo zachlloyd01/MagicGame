@@ -72,6 +72,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         list.ClearOptions();
         docs += @"\decks\";
         DirectoryInfo d = new DirectoryInfo(docs);
@@ -185,13 +186,20 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-        if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
+        // Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
         {
             PhotonNetwork.LoadLevel("Game");
         }
     }
 
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= maxPlayersPerRoom)
+        {
+            PhotonNetwork.LoadLevel("Game");
+        }
+    }
 
     #endregion
 }

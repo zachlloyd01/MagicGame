@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameObject pausePanel;
 
+    private void Start()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
 
     #region Photon Callbacks
 
@@ -73,6 +77,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         Debug.Log($"PhotonNetwork: Loading Level, with {PhotonNetwork.CurrentRoom.PlayerCount}");
         PhotonNetwork.LoadLevel("Game");
+        
+        
     }
 
     #endregion
