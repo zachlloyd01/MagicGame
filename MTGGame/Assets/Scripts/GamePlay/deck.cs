@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class deck : MonoBehaviour, IPointerClickHandler
 {
 
@@ -37,4 +38,6 @@ public class deck : MonoBehaviour, IPointerClickHandler
         temp = PhotonNetwork.Instantiate(this.cardPrefab.name, new Vector3(0, 0, 0), Quaternion.identity);
         temp.GetComponent<Play_Card>().id = card;
     }
+
+
 }
