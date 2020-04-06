@@ -33,8 +33,8 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
-  - RenderSprite
   - getOrder
+  - RenderSprite
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
