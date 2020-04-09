@@ -33,8 +33,10 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
-  - getOrder
   - RenderSprite
+  - turnManagerMake
+  - putonclients
+  - setTurnOrder
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

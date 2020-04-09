@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 2896111486871316486}
   m_Layer: 0
   m_Name: TurnManager
-  m_TagString: Untagged
+  m_TagString: TurnManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6518020666184617518
 Transform:
   m_ObjectHideFlags: 0
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec97fe704be1054f81ba4b1093797cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  values: 
-  Players: []
-  orderTurn: []
+  orderTurn:
+  - bruh
+  - boi
+  turnManager: {fileID: 0}

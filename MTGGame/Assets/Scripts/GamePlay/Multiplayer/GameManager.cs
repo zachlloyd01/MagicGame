@@ -16,24 +16,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<string> orderTurns;
     public TMP_Text centerText;
 
+    public string values;
+
+    public List<string> orderTurn;
+
+
     public GameObject turnManager;
     public GameObject NewPlayer;
     int currentPlayer;
-
-    private void Start()
-    {
-        PhotonNetwork.AutomaticallySyncScene = true;
-        if(PhotonNetwork.IsMasterClient)
-        {
-            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-            {
-
-                GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
-                newPlayer.name = player.NickName;
-            }
-            PhotonNetwork.Instantiate(turnManager.name, Vector3.zero, Quaternion.identity);
-        }
-    }
 
     #region Photon Callbacks
 
@@ -56,12 +46,27 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        orderTurn.Clear();
+        GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn.Clear();
         SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
 
     #region Default Functions
+
+    private void Start()
+    {
+        orderTurn = new List<string>();
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.AutomaticallySyncScene = true;
+            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+            {
+                GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
+                newPlayer.name = player.NickName;
+            }
+    }
+
 
     private void Update()
     {
@@ -72,7 +77,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         else if(Input.GetKeyDown(KeyCode.Escape) && pausePanel.activeSelf.Equals(true)) {
             pausePanel.SetActive(false);
         }
-          centerText.SetText(GameObject.Find("TurnManager(Clone)").GetComponent<TurnManager>().values);
+        if (GameObject.FindGameObjectWithTag("TurnManager") != null && centerText.text == "NULL")
+        {
+            centerText.text = "";
+            foreach(Photon.Realtime.Player person in GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn)
+            {
+                centerText.text += person.NickName + "\n";
+            }
+        }
+        Debug.Log(orderTurn[0]);
     }
     
 

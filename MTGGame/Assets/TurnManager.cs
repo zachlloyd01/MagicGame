@@ -5,30 +5,19 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviourPunCallbacks
 {
-    public string values;
+    public List<Photon.Realtime.Player> orderTurn;
 
-    public List<GameObject> Players;
-    public List<string> orderTurn;
+    private List<Photon.Realtime.Player> tempTurn;
 
-    int currentPlayer;
-
-    public override void OnEnable()
+    private void OnEnable()
     {
-        List<Photon.Realtime.Player> turnOrder = new List<Photon.Realtime.Player>();
-        if (PhotonNetwork.IsMasterClient)
+        if(PhotonNetwork.IsMasterClient)
         {
-            foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-            {
-                orderTurn.Add(player.NickName);
-            }
-            orderTurn.Shuffle();
+            tempTurn = new List<Photon.Realtime.Player>(PhotonNetwork.PlayerList);
+            tempTurn.Shuffle();
+            orderTurn = tempTurn;
+            photonView.RPC("setTurnOrder", RpcTarget.OthersBuffered, orderTurn.ToArray());
         }
-        foreach (string x in orderTurn)
-        {
-            values += x + "\n";
-        }
-
-        currentPlayer = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -41,4 +30,13 @@ public class TurnManager : MonoBehaviourPunCallbacks
     {
 
     }
+
+    [PunRPC]
+    void setTurnOrder(Photon.Realtime.Player[] localTurn)
+    {
+        Debug.Log("rpc");
+        orderTurn = new List<Photon.Realtime.Player>(localTurn);
+        Debug.Log(orderTurn[0]);
+    }
+
 }
