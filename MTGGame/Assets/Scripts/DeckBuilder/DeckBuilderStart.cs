@@ -28,8 +28,8 @@ public class DeckBuilderStart : MonoBehaviour
     {
         deckBuilder.SetActive(false);
         chooseList.SetActive(true);
-        content.GetComponent<GridLayoutGroup>().padding.left = Convert.ToInt32(Screen.width * .2);
-        content.GetComponent<GridLayoutGroup>().padding.right = Convert.ToInt32(Screen.width * .2);
+        content.GetComponent<GridLayoutGroup>().padding.left = Convert.ToInt32((Screen.width / 2) / 50);
+        content.GetComponent<GridLayoutGroup>().padding.right = Convert.ToInt32(Screen.width * .002);
         Exceptional<List<Card>> result = service.All();
         if(result.IsSuccess)
         {
@@ -66,6 +66,5 @@ public class DeckBuilderStart : MonoBehaviour
         tempObject.name = CardName;
         tempObject.GetComponent<Builder_Card>().id = id;
         tempObject.GetComponent<Image>().sprite = Sprite.Create(cardTexture, new Rect(0, 0, cardTexture.width, cardTexture.height), new Vector2(0, 0));
-        // Debug.Log(image.texture.filterMode);
     }
 }
