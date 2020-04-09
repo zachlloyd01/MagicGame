@@ -2,21 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class TurnManager : MonoBehaviourPunCallbacks
 {
-    public List<Photon.Realtime.Player> orderTurn;
+    public string[] orderTurn;
+
 
     private List<Photon.Realtime.Player> tempTurn;
 
     private void OnEnable()
     {
-        if(PhotonNetwork.IsMasterClient)
+        orderTurn = new string[2];
+        if (PhotonNetwork.IsMasterClient)
         {
             tempTurn = new List<Photon.Realtime.Player>(PhotonNetwork.PlayerList);
             tempTurn.Shuffle();
-            orderTurn = tempTurn;
-            photonView.RPC("setTurnOrder", RpcTarget.OthersBuffered, orderTurn.ToArray());
+            for(int i = 0; i < tempTurn.Count; i++)
+            {
+                orderTurn[i] = tempTurn[i].NickName;
+            }
+            photonView.RPC("setTurnOrder", RpcTarget.OthersBuffered, orderTurn);
         }
     }
     // Start is called before the first frame update
@@ -32,11 +38,14 @@ public class TurnManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void setTurnOrder(Photon.Realtime.Player[] localTurn)
+    void setTurnOrder(string[] localTurn)
     {
         Debug.Log("rpc");
-        orderTurn = new List<Photon.Realtime.Player>(localTurn);
-        Debug.Log(orderTurn[0]);
+        for(int i = 0; i < localTurn.Length; i++)
+        {
+            orderTurn[i] = localTurn[i];
+        }
+        Debug.Log(localTurn[0]);
     }
 
 }

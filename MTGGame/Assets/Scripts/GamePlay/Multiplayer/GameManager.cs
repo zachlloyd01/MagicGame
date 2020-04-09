@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         orderTurn.Clear();
-        GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn.Clear();
+        // GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn = new string[2];
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -57,12 +57,10 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        orderTurn = new List<string>();
-        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.AutomaticallySyncScene = true;
             foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
             {
-                GameObject newPlayer = PhotonNetwork.Instantiate(NewPlayer.name, Vector3.zero, Quaternion.identity);
+                GameObject newPlayer = Instantiate(NewPlayer, Vector3.zero, Quaternion.identity);
                 newPlayer.name = player.NickName;
             }
     }
@@ -80,12 +78,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (GameObject.FindGameObjectWithTag("TurnManager") != null && centerText.text == "NULL")
         {
             centerText.text = "";
-            foreach(Photon.Realtime.Player person in GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn)
+            foreach(string person in GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn)
             {
-                centerText.text += person.NickName + "\n";
+                centerText.text += person + "\n";
             }
         }
-        Debug.Log(orderTurn[0]);
+        try
+        {
+            Debug.Log(GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>().orderTurn[0]);
+        }
+        catch
+        {
+            Debug.Log("Got to the catch");
+        }
+        
     }
     
 
