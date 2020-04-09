@@ -24,7 +24,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [Tooltip("The UI Label to inform the user that the connection is in progress")]
     [SerializeField]
     private TMP_Text progressLabel;
-    
+
     #endregion
 
     #region Public Fields
