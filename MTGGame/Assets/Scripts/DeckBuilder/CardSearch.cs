@@ -39,7 +39,7 @@ public class CardSearch : MonoBehaviour
     {
         string query = searchBar.text;
 
-        var result = service.Where(x => x.Name, query).All();
+        var result = service.Where(x => x.Name, query).Where(x => x.Set, "8ED").All();
         var value = result.Value;
         newQuery(value);
     }

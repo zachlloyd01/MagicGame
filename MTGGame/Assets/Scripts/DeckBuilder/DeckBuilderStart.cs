@@ -30,8 +30,8 @@ public class DeckBuilderStart : MonoBehaviour
         chooseList.SetActive(true);
         content.GetComponent<GridLayoutGroup>().padding.left = Convert.ToInt32((Screen.width / 2) / 50);
         content.GetComponent<GridLayoutGroup>().padding.right = Convert.ToInt32(Screen.width * .002);
-        Exceptional<List<Card>> result = service.All();
-        if(result.IsSuccess)
+        Exceptional<List<Card>> result = service.Where(x => x.Set, "8ED").All();
+        if (result.IsSuccess)
         {
             var value = result.Value;
             for (int i = 0; i < value.Count; i++) {
