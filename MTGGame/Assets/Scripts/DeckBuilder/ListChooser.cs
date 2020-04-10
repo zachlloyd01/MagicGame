@@ -6,38 +6,46 @@ using System.IO;
 
 public class ListChooser : MonoBehaviour
 {
+
+    #region Public Variables
+
     [System.NonSerialized]
-    public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+    public string docs = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); //Get User Docs folder
 
-    public string workingFile = "";
+    public string workingFile; //File to edit
 
-    public GameObject newListPanel;
+    public GameObject newListPanel; //New Panel
 
-    public TMP_InputField newName;
+    public TMP_InputField newName; //New Deck Name
 
-    public GameObject ButtonUI;
+    public GameObject ButtonUI; //Main Menu
 
-    public GameObject deckBuilder;
+    public GameObject deckBuilder; //Deckbuilder UI
 
-    public GameObject chooseList;
+    public GameObject chooseList; //List choosing UI
 
-    public TMP_Dropdown list;
+    public TMP_Dropdown list; //List chooser dropdown
 
-    public GameObject EditListPanel;
+    public GameObject EditListPanel; //List Editor Chooser UI
+
+    #endregion
 
     private void Start()
     {
-        list.ClearOptions();
-        docs += @"\decks\";
-        DirectoryInfo d = new DirectoryInfo(docs);
-        List<string> options = new List<string>();
-        foreach (var file in d.GetFiles("*.json"))
-        {
-            options.Add((file.Name.Split('.')[0]));
+        if(!Directory.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\decks\")) { //If the decks dir does not exist
+            Directory.CreateDirectory(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\decks\"); //Create the decks dir
         }
-        list.AddOptions(options);
-        ButtonUI.SetActive(true);
-        newListPanel.SetActive(false);   
+        list.ClearOptions(); //Clear the Dropdown options
+        docs += @"\decks\"; //Append the decks folder to docs
+        DirectoryInfo d = new DirectoryInfo(docs); //Get the files in the decks dir
+        List<string> options = new List<string>(); //Will be all files in the decks dir
+        foreach (var file in d.GetFiles("*.json")) //Every json file in decks dir
+        {
+            options.Add((file.Name.Split('.')[0]));  //Append the file name to the list
+        }
+        list.AddOptions(options); //Set the dropdown options to the list
+        ButtonUI.SetActive(true); //Set mainmenu active
+        newListPanel.SetActive(false); //Turn off the new panel
     }
 
     
