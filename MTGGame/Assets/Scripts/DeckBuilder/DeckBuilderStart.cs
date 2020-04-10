@@ -23,8 +23,7 @@ public class DeckBuilderStart : MonoBehaviour
     #region Controls
 
     [Tooltip("Which set will we play?")]
-    [SerializeField]
-    private string SetCode; //Which set to use
+    public string SetCode; //Which set to use
 
     #endregion
 
@@ -35,8 +34,6 @@ public class DeckBuilderStart : MonoBehaviour
 
     #endregion
 
-
-    
     void Start() // Start is called before the first frame update
     {
         InitialValueSetting(); //Setup the scene
