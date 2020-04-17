@@ -33,13 +33,13 @@ public class Builder_Card : MonoBehaviour, IPointerClickHandler //, IPointerEnte
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(!setValues)
+        infoPanel.SetActive(true);
+        if (!setValues)
         {
             StartCoroutine(SetPanel());
             setValues = true;
         }
-
-        infoPanel.SetActive(true);
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
