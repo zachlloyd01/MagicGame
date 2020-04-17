@@ -8,7 +8,7 @@ using TMPro;
 using MtgApiManager.Lib.Service;
 using UnityEngine.UI;
 
-public class Builder_Card : MonoBehaviour, IPointerClickHandler //, IPointerEnterHandler, IPointerExitHandler, 
+public class Builder_Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler 
 {
     public string id;
 
@@ -36,7 +36,22 @@ public class Builder_Card : MonoBehaviour, IPointerClickHandler //, IPointerEnte
         infoPanel.SetActive(true);
         if (!setValues)
         {
-            StartCoroutine(SetPanel());
+            CardService service = new CardService();
+            var result = service.Find(id);
+            var values = result.Value;
+            cardName = values.Name;
+            cardText = values.Text;
+            types = values.Types;
+            CMC = values.Cmc;
+            cardNameTitle.text = cardName;
+            cardTextTitle.text = cardText;
+            string type = "";
+            foreach (string i in types)
+            {
+                type += i;
+            }
+            cardTypesTitle.text = type;
+            cardCMCTitle.text = "CMC: " + CMC.ToString();
             setValues = true;
         }
         
@@ -61,22 +76,7 @@ public class Builder_Card : MonoBehaviour, IPointerClickHandler //, IPointerEnte
 
     private IEnumerator SetPanel()
     {
-        CardService service = new CardService();
-        var result = service.Find(id);
-        var values = result.Value;
-        cardName = values.Name;
-        cardText = values.Text;
-        types = values.Types;
-        CMC = values.Cmc;
-        cardNameTitle.text = cardName;
-        cardTextTitle.text = cardText;
-        string type = "";
-        foreach (string i in types)
-        {
-            type += i;
-        }
-        cardTypesTitle.text = type;
-        cardCMCTitle.text = "CMC: " + CMC.ToString();
+       
         yield return null;
     }
 }
