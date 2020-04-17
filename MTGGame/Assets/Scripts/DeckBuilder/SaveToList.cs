@@ -22,6 +22,14 @@ public class SaveToList : MonoBehaviour
         newPanel.SetActive(true);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && newPanel.activeSelf)
+        {
+            newPanel.SetActive(false);
+        }
+    }
+
     #region Private Functions
     private void save()
     {
