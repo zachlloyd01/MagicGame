@@ -70,6 +70,10 @@ public class ListChooser : MonoBehaviour
     public void setNew()
     {
         workingFile = docs + newName.text + ".json";
+        if(!File.Exists(workingFile))
+        {
+            File.Create(workingFile);
+        }
         chooseList.SetActive(false);
         deckBuilder.SetActive(true);
     }
